@@ -1,18 +1,19 @@
 <?php 
 
-    class Index extends Controller{
+    class Usuario extends Controller{
 
         public function __construct()
         {
         }
         
-        public function index(){
+        public function cadastro(){
             $dados = [
                 "dados"  => "",
                 "status" => ""
             ];
-            $this->view('index', $dados);
+            $this->view('usuario/cadastro', $dados);
         }
+
     }
 
 ?>

@@ -1,6 +1,6 @@
 <?php 
 
-    class Index extends Controller{
+    class Privacy extends Controller{
 
         public function __construct()
         {
@@ -11,8 +11,9 @@
                 "dados"  => "",
                 "status" => ""
             ];
-            $this->view('index', $dados);
+            $this->view('privacy', $dados);
         }
+
     }
 
 ?>

@@ -1,37 +1,99 @@
-    <div class="container py-5" id="hanging-icons">
-      <?php
-        if(isset($_GET["reg"])){
-          if($_GET["reg"] == "success"){
-              echo "<div class='alert alert-success' role='alert'>";
-              echo "User succesfully Registered, now you can sign in! ";
-              echo "</div>";
-          }
-        }
-        if(count($dados) > 0){
-          if($dados["status"] == "error"){
-            echo "  <div class='alert alert-danger' role='alert'>";
-            echo $dados["mensagem"];
-            echo "</div>";
-          }
-          else if($dados["status"] == "success"){
-            echo "  <div class='alert alert-success' role='alert'>";
-            echo $dados["mensagem"];
-            echo "</div>";
-          }else if($dados["status"] == "updatePage"){
-            echo "<script>window.location.href='".URL."'</script>";
-          }
-        }
-      ?>
-      <h2 class="pb-2 border-bottom">Most Visited Functions</h2>
-      <div class="row g-5 py-3">
-        <?php foreach($dados["dados"] as $info){ ?>
-          <div class="col-md-3 align-items-start" style="height:200px;">
-            <div style="height:120px;overflow: hidden; margin-bottom:5%;">
-              <h3><b><?= $info->titfun ?></b></h3>
-              <p><?= $info->absfun ?></p>
-            </div>
-            <a href="<?= URL ?>/Functions/viewfunction/<?= $info->slugfu ?>" class="btn btn-primary">View Function</a>   
+<main style="background-color:white;">
+  <!-- CAROUSEL BEGIN-->
+
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" >
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <!-- CAROUSEL ITEM -->
+      <div class="carousel-item active">
+        <img src="<?= URL ?>/public/img/viagem.jpeg">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Conte-nos a sua experiência.</h1>
+            <p>Queremos contar a sua experiência de viagem, ajude a tirar as dúvidas de quem quer ir para um destino que você conhece.</p>
+            <p><a class="btn btn-lg btn-primary" href="postar.html">Conte a sua viagem</a></p>
           </div>
-        <?php } ?>
+        </div>
+      </div>
+      <!-- CAROUSEL ITEM -->
+      <div class="carousel-item">
+        <img src="<?= URL ?>/public/img/londres.jpeg">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Londres</h1>
+            <p>Um lugar lindo para se conhecer.</p>
+            <p><a class="btn btn-lg btn-primary" href="VisualizarPost.html">Leia Mais</a></p>
+          </div>
+        </div>
+      </div>
+      <!-- CAROUSEL ITEM -->
+      <div class="carousel-item">
+        <img src="<?= URL ?>/public/img/maragogi.jpeg">
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Maragogi</h1>
+            <p>Conheça o Caribe brasileiro.</p>
+            <p><a class="btn btn-lg btn-primary" href="#">Leia Mais</a></p>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- CAROUSEL BUTTONS -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!-- CAROUSEL - END -->
+
+
+  <div id="mensagem">
+    <p>Primeiramente, seja bem vindo(a), agradecemos a sua visita ao nosso Blog, é muito importante para nós, e se chegou até aqui, sem dúvidas é porque também se interessa por viagens, então convidamos você a desbravar esse mundo de possibilidades onde vivemos, e compartilhar conosco a sua história!</p>
+  </div>
+  <div class="container">
+  <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
+        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+      </div>
+      <div class="col-md-5">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
+        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
+        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      </div>
+      <div class="col-md-5">
+        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+
+      </div>
+    </div>
+    <hr class="featurette-divider">
+  </div><!-- container -->
+</main>

@@ -12,7 +12,7 @@
 
 	// dirname — Retorna o caminho/path do diretório pai
 	define('APP', dirname(__FILE__));
-	define('URL','http://enjoy/functionsrepository');
+	define('URL','http://localhost/enjoy');
 	define('APP_NOME','Blog - Enjoy the Journey');
 	define('APP_VERSAO','1.0.0');
 	

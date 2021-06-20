@@ -1,0 +1,72 @@
+#texto-rodape{
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+    text-align: justify;
+    font-size: 120%;
+    color: #f2f2f2ea;
+}
+
+#form1{
+    padding-top:12%;
+    width:100%;
+    height:600px;
+    display:block;
+    text-align:center;
+}
+
+#form2{
+    padding-top:10%;
+    width:100%;
+    height:600px;
+    display:none;
+    text-align:center;
+}
+
+#form3{
+    padding-top:10%;
+    width:100%;
+    height:600px;
+    display:none;
+    text-align:center;
+}
+#form4{
+    padding-top:15%;
+    width:100%;
+    height:600px;
+    display:none;
+    text-align:center;
+}
+
+#form5{
+    padding-top:15%;
+    width:100%;
+    height:600px;
+    display:none;
+    text-align:center;
+}
+
+span{
+    display: inline-block; 
+    padding-top:10px;
+    padding-bottom:50px;
+}
+
+#formPerfil{
+    padding-left: 100px;
+    padding-right:100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-family:15px Arial, Helvetica, sans-serif;
+  }
+.titulos{
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    color:rgb(73, 73, 73);
+  }
+
+#aprovacoesPendentes{
+    padding-top: 30px;
+    min-height: 600px;
+}

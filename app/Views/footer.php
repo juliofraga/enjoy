@@ -1,9 +1,10 @@
-<div class="bg-dark text-secondary px-4 py-5 text-center">
-  <div class="py-5">
-    <h1 class="display-5 fw-bold text-white">Functions Repository</h1>
-    <div class="col-lg-6 mx-auto">
-      <p class="fs-5 mb-4" style="text-align:justify;">Do you know that function you created yourself, the one that is not native to the language? Well, someone may be in need of it, share with us the standard functions for you and discover functions that other programmers from around the world have created and consume daily to solve daily problems. Enjoy this Repository!</p>
-      <p class="fs-6 mb-4">2021 - 2021</p>
-    </div>
-  </div>
-</div>
+<footer>
+  <div id="texto-rodape">
+    <h1>Enjoy The Journey</h1>
+    <p>Olá pessoal...<br>
+      Somos um casal viajante, plenamente envolvidos pela mesma paixão.
+      Sentir e explorar novas culturas, paisagens, novos sabores, conhecer pessoas, isso nos encanta imensamente.<br>
+      Esse sentimento é o que nos move a seguir nesse caminho, e o desejo de viver profundamente cada momento de nossas vidas, nos sentindo completos e felizes, por isso, permita-se e <b>Enjoy the Journey!</b>
+    </p>
+  </div>  
+</footer>

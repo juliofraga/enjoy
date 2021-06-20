@@ -1,34 +1,18 @@
-function mostraCampos(valor){
-    if(valor == "999999"){
-      document.getElementById("formOutraLing").style.display = "block";
-      document.getElementById("labelOutraLing").style.display = "block";
-      document.getElementById("txtOutraLing").style.display = "block";
-    }else{
-      document.getElementById("formOutraLing").style.display = "none";
-      document.getElementById("labelOutraLing").style.display = "none";
-      document.getElementById("txtOutraLing").style.display = "none";
+function alteraCampos(num){
+    if(num == 1){
+      document.getElementById("form1").style.display="none";
+      document.getElementById("form2").style.display="block";
+    }else if(num == 2){
+      document.getElementById("form2").style.display="none";
+      document.getElementById("form3").style.display="block";
+    }else if(num == 3){
+      document.getElementById("form3").style.display="none";
+      document.getElementById("form4").style.display="block";
+    }else if(num == 4){
+      document.getElementById("form4").style.display="none";
+      document.getElementById("form5").style.display="block";
     }
-  }
-
-function toggleResetPswd(e){
-  e.preventDefault();
-  $('#logreg-forms .form-signin').toggle() // display:block or none
-  $('#logreg-forms .form-reset').toggle() // display:block or none
 }
-
-function toggleSignUp(e){
-  e.preventDefault();
-  $('#logreg-forms .form-signin').toggle(); // display:block or none
-  $('#logreg-forms .form-signup').toggle(); // display:block or none
-}
-
-$(()=>{
-  // Login Register Form
-  $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
-  $('#logreg-forms #cancel_reset').click(toggleResetPswd);
-  $('#logreg-forms #btn-signup').click(toggleSignUp);
-  $('#logreg-forms #cancel_signup').click(toggleSignUp);
-})
 
 /* 
 
@@ -38,7 +22,7 @@ BEGIN
 */
 var purecookieTitle="Cookies.",
 purecookieDesc="By using this website, you automatically accept that we use cookies.",
-purecookieLink='<a href="http://localhost/myfunctions/privacy" target="_blank">Read More</a>',
+purecookieLink='<a href="http://localhost/enjoy/privacy" target="_blank">Read More</a>',
 purecookieButton="Understood";
 function pureFadeIn(e,o){
   var i=document.getElementById(e);
@@ -80,10 +64,10 @@ function eraseCookie(e){
   document.cookie=e+"=; Max-Age=-99999999;"
 }
 function cookieConsent(){
-  getCookie("Cookie_FunRep")||(document.body.innerHTML+='<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieTitle"><a>'+purecookieTitle+'</a></div><div class="cookieDesc"><p>'+purecookieDesc+" "+purecookieLink+'</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">'+purecookieButton+"</a></div></div>",pureFadeIn("cookieConsentContainer"))
+  getCookie("Cookie_enjoytj")||(document.body.innerHTML+='<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieTitle"><a>'+purecookieTitle+'</a></div><div class="cookieDesc"><p>'+purecookieDesc+" "+purecookieLink+'</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">'+purecookieButton+"</a></div></div>",pureFadeIn("cookieConsentContainer"))
 }
 function purecookieDismiss(){
-  setCookie("Cookie_FunRep","1",30),
+  setCookie("Cookie_enjoytj","1",30),
   pureFadeOut("cookieConsentContainer")
 }
 window.onload=function(){cookieConsent()};
