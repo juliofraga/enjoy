@@ -43,6 +43,26 @@
 					"instagram" => trim($form["txtInstagram"]),
 					"autorizacao" => trim($form["selAutoriza"]),
 				];
+				if(empty($dados["localViagem"])){
+					$dados = [
+						"resultado" => "erro",
+                        "mensagem"  => "O local da viagem deve ser informado!"
+					];
+					$this->view('viagem/finalizar', $dados);
+				}else if(empty($dados["maisGostou"]) or empty($dados["maisGostou"]) or empty($dados["comentarios"])){
+					$dados = [
+						"resultado" => "erro",
+                        "mensagem"  => "Nos dê mais informações sobre a sua viagem, nos fale sobre algo que você gostou ou que não gostou, por exemplo!!"
+					];
+					$this->view('viagem/finalizar', $dados);
+				}else{
+					//insere no banco
+					$dados = [
+						"resultado" => "sucesso",
+                        "mensagem"  => "Obrigado por nos contar a sua experiência, em breve vamos liberar o seu post no nosso blog!!"
+					];
+					$this->view('viagem/finalizar', $dados);
+				}
 			}else{
                 $this->view('viagem/postar');
             }
