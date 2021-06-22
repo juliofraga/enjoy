@@ -49,10 +49,10 @@
                         "mensagem"  => "O local da viagem deve ser informado!"
 					];
 					$this->view('viagem/finalizar', $dados);
-				}else if(empty($dados["maisGostou"]) or empty($dados["maisGostou"]) or empty($dados["comentarios"])){
+				}else if(empty($dados["maisGostou"]) and empty($dados["maisGostou"]) and empty($dados["comentarios"])){
 					$dados = [
 						"resultado" => "erro",
-                        "mensagem"  => "Nos dê mais informações sobre a sua viagem, nos fale sobre algo que você gostou ou que não gostou, por exemplo!!"
+                        "mensagem"  => "Não consgeuimos registrar seu post, pois temos poucas informações, nos dê mais informações sobre a sua viagem, nos fale sobre algo que você gostou ou que não gostou, por exemplo!!"
 					];
 					$this->view('viagem/finalizar', $dados);
 				}else{
