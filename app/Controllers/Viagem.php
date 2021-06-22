@@ -38,7 +38,7 @@
 					"localViagem" => trim($form["txtLocalViagem"]),
 					"data" => trim($form["dtquando"]),
 					"maisGostou" => trim($form["txtMaisgostou"]),
-					"menosGostou" => trim($form["txtMenosgostou"]),,
+					"menosGostou" => trim($form["txtMenosgostou"]),
 					"comentarios" => trim($form["txtComentarios"]),
 					"instagram" => trim($form["txtInstagram"]),
 					"autorizacao" => trim($form["selAutoriza"]),
