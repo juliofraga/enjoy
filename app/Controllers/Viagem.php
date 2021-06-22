@@ -36,9 +36,9 @@
 				$dados = [
 					"nome" => trim($form["txtNome"]),
 					"localViagem" => trim($form["txtLocalViagem"]),
-					"data" => trim($form["dtquando"]),
-					"maisGostou" => trim($form["txtMaisgostou"]),
-					"menosGostou" => trim($form["txtMenosgostou"]),
+					"data" => trim($form["dtQuando"]),
+					"maisGostou" => trim($form["txtMaisGostou"]),
+					"menosGostou" => trim($form["txtMenosGostou"]),
 					"comentarios" => trim($form["txtComentarios"]),
 					"instagram" => trim($form["txtInstagram"]),
 					"autorizacao" => trim($form["selAutoriza"]),
