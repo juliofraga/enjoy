@@ -1,16 +1,21 @@
 function alteraCampos(num){
-    if(num == 1){
-      document.getElementById("form1").style.display="none";
-      document.getElementById("form2").style.display="block";
+    if(num == 0){
+      document.getElementById("form0").style.display="none";
+      document.getElementById("form1").style.display="block";
+    }else if(num == 1){
+		if(document.getElementById("txtLocalViagem").value == ""){
+			alert("Informe o local para onde você viajou!");
+			document.getElementById("txtLocalViagem").focus();
+		}else{
+		  document.getElementById("form1").style.display="none";
+		  document.getElementById("form2").style.display="block";
+		}
     }else if(num == 2){
       document.getElementById("form2").style.display="none";
       document.getElementById("form3").style.display="block";
     }else if(num == 3){
       document.getElementById("form3").style.display="none";
       document.getElementById("form4").style.display="block";
-    }else if(num == 4){
-      document.getElementById("form4").style.display="none";
-      document.getElementById("form5").style.display="block";
     }
 }
 
