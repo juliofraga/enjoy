@@ -44,9 +44,9 @@
 					"comentarios" => trim($form["txtComentarios"]),
 					"instagram" => trim($form["txtInstagram"]),
 					"autorizacao" => trim($form["selAutoriza"]),
-					"img1" = > $this->trataImagem($form["img1"]),
-					"img2" = > $this->trataImagem($form["img2"]),
-					"img3" = > $this->trataImagem($form["img3"])
+					"img1" => $this->trataImagem($form["img1"]),
+					"img2" => $this->trataImagem($form["img2"]),
+					"img3" => $this->trataImagem($form["img3"])
 				];
 				if(empty($dados["localViagem"])){
 					$dados = [
