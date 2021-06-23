@@ -35,9 +35,6 @@
 		public function cadastrar(){
 			$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             if(isset($form['finalizar'])){
-				$this->trataImagem($form["img1"]);
-				$this->trataImagem($form["img2"]);
-				$this->trataImagem($form["img3"]);
 				$dados = [
 					"nome" => trim($form["txtNome"]),
 					"localViagem" => trim($form["txtLocalViagem"]), 
@@ -47,9 +44,9 @@
 					"comentarios" => trim($form["txtComentarios"]),
 					"instagram" => trim($form["txtInstagram"]),
 					"autorizacao" => trim($form["selAutoriza"]),
-					"img1" = > "",
-					"img2" = > "",
-					"img3" = > "",
+					"img1" = > $this->trataImagem($form["img1"]),
+					"img2" = > $this->trataImagem($form["img2"]),
+					"img3" = > $this->trataImagem($form["img3"])
 				];
 				if(empty($dados["localViagem"])){
 					$dados = [
@@ -78,7 +75,7 @@
 		
 		//tratar imagem recebida do formulário
 		private function trataImagem($img = null){
-			
+			return null;
 		}
     }
 
