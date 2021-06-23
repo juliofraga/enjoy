@@ -16,6 +16,9 @@ function alteraCampos(num){
     }else if(num == 3){
       document.getElementById("form3").style.display="none";
       document.getElementById("form4").style.display="block";
+    }else if(num == 4){
+      document.getElementById("form4").style.display="none";
+      document.getElementById("form5").style.display="block";
     }
 }
 

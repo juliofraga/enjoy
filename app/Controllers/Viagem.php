@@ -33,6 +33,9 @@
 		public function cadastrar(){
 			$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             if(isset($form['finalizar'])){
+				$this->trataImagem($form["img1"]);
+				$this->trataImagem($form["img2"]);
+				$this->trataImagem($form["img3"]);
 				$dados = [
 					"nome" => trim($form["txtNome"]),
 					"localViagem" => trim($form["txtLocalViagem"]),
@@ -52,7 +55,7 @@
 				}else if(empty($dados["maisGostou"]) and empty($dados["maisGostou"]) and empty($dados["comentarios"])){
 					$dados = [
 						"resultado" => "erro",
-                        "mensagem"  => "Não consgeuimos registrar seu post, pois temos poucas informações, nos dê mais informações sobre a sua viagem, nos fale sobre algo que você gostou ou que não gostou, por exemplo!!"
+                        "mensagem"  => "Não conseguimos registrar seu post, pois temos poucas informações, nos dê mais informações sobre a sua viagem, nos fale sobre algo que você gostou ou que não gostou, por exemplo!!"
 					];
 					$this->view('viagem/finalizar', $dados);
 				}else{
@@ -66,6 +69,11 @@
 			}else{
                 $this->view('viagem/postar');
             }
+		}
+		
+		//tratar imagem recebida do formulário
+		private function trataImagem($img = null){
+			
 		}
     }
 

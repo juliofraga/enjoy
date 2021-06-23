@@ -1,5 +1,5 @@
 <main class="bg-white">
-	<form method="POST" action="<?= URL ?>/Viagem/cadastrar">
+	<form method="POST" action="<?= URL ?>/Viagem/cadastrar" enctype="multipart/form-data">
 		<div id="form0">
 			<h4>Qual o seu nome? Não tem problema se não quiser se identificar :)</h4>
 			<span>
@@ -41,6 +41,16 @@
 			<input type="button" class="btn btn-dark" style="width:30%;" onClick="alteraCampos(3);" value="Next">
 		</div>
 		<div id="form4">
+			<h4>Envie até 3 fotos da sua viagem, elas irão para o post no nosso blog, capriche na escolha!</h4>
+			<span>
+				<input type="file" class="form-control-file" name="img1" accept="image/*"><br><br>
+				<input type="file" class="form-control-file" name="img2" accept="image/*"><br><br>
+				<input type="file" class="form-control-file" name="img3" accept="image/*">
+			</span>
+			<br>
+			<input type="button" class="btn btn-dark" style="width:30%;" onClick="alteraCampos(4);" value="Next">
+		</div>
+		<div id="form5">
 			<h4>Qual o seu Instagram?</h4>
 			<span>
 				<input type="text" size="50px" class="form form-control" name="txtInstagram">
