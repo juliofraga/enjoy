@@ -4,6 +4,7 @@
 
         public function __construct()
         {
+			$this->viagemModel = $this->model('ViagemModel');
         }
         //exibir tela para postagem do usuário
         public function postar(){
@@ -30,6 +31,7 @@
             $this->view('viagem/post', $dados);
         }
 		//inserir no banco de dados as informações da viagem
+		//INSERIR NO BANCO OPÇÃO PARA TER TÍTULO DO POST//
 		public function cadastrar(){
 			$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             if(isset($form['finalizar'])){
@@ -38,13 +40,16 @@
 				$this->trataImagem($form["img3"]);
 				$dados = [
 					"nome" => trim($form["txtNome"]),
-					"localViagem" => trim($form["txtLocalViagem"]),
+					"localViagem" => trim($form["txtLocalViagem"]), 
 					"data" => trim($form["dtQuando"]),
 					"maisGostou" => trim($form["txtMaisGostou"]),
 					"menosGostou" => trim($form["txtMenosGostou"]),
 					"comentarios" => trim($form["txtComentarios"]),
 					"instagram" => trim($form["txtInstagram"]),
 					"autorizacao" => trim($form["selAutoriza"]),
+					"img1" = > "",
+					"img2" = > "",
+					"img3" = > "",
 				];
 				if(empty($dados["localViagem"])){
 					$dados = [
