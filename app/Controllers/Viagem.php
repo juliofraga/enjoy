@@ -44,9 +44,9 @@
 					"comentarios" => trim($form["txtComentarios"]),
 					"instagram" => trim($form["txtInstagram"]),
 					"autorizacao" => trim($form["selAutoriza"]),
-					"img1" => $this->trataImagem($form["img1"]),
-					"img2" => $this->trataImagem($form["img2"]),
-					"img3" => $this->trataImagem($form["img3"])
+					"img1" => $this->trataImagem($_FILES["img1"]["name"], $_FILES['img1']['tmp_name'], "img1"),
+					"img2" => $this->trataImagem($_FILES["img2"]["name"], $_FILES['img2']['tmp_name'], "img2"),
+					"img3" => $this->trataImagem($_FILES["img3"]["name"], $_FILES['img3']['tmp_name'], "img3")
 				];
 				if(empty($dados["localViagem"])){
 					$dados = [
@@ -74,8 +74,16 @@
 		}
 		
 		//tratar imagem recebida do formulário
-		private function trataImagem($img = null){
-			return null;
+		private function trataImagem($nome = null, $nomeTemp = null, $campo){
+			if(empty($nome))
+				return null;
+			else{
+				$dateTime = date('dmYhis');
+				$path = $campo.$dateTime.$nome;
+				//$diretorio = "img/";
+				//move_uploaded_file($nomeTemp, $diretorio . $path);
+				return $path;
+			}
 		}
     }
 
