@@ -54,6 +54,14 @@
     text-align:center;
 }
 
+#errorPage{
+	width:100%;
+    height:600px;
+	background-color:white;
+	padding-top:15%;
+	text-align:center;
+}
+
 span{
     display: inline-block; 
     padding-top:10px;

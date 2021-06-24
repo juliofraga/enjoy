@@ -23,15 +23,17 @@
             $this->view('viagem/postagens', $dados);
         }
 		//exibir um post específico
-        public function post($slug){
-            $dados = [
-                "dados"  => "",
-                "status" => ""
-            ];
-            $this->view('viagem/post', $dados);
+        public function post($slug = null){
+            if(empty($slug) or $slug == null){
+				$this->view('pagenotfound');
+			}else{
+				$dados = [
+					"dados"  => $this->viagemModel->buscaPorSlug($slug)
+				];
+				$this->view('viagem/post', $dados);
+			}
         }
 		//inserir no banco de dados as informações da viagem
-		//INSERIR NO BANCO OPÇÃO PARA TER TÍTULO DO POST E LOCAL PARA ONDE FOI A VIAGEM//
 		public function cadastrar(){
 			$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             if(isset($form['finalizar'])){

@@ -39,15 +39,11 @@ class ViagemModel
         }
     }
 	//Verificar se título do post já existe
-    public function buscaPorTítulo($titulo)
+    public function buscaPorSlug($slug)
     {
-        $this->db->query("SELECT * FROM post WHERE titulo = :titulo");
-        $this->db->bind("titulo", $titulo);
-        $this->db->execQuery();
-        if($this->db->numRows() > 0)
-            return true;
-        else
-            return false;
+        $this->db->query("SELECT * FROM post WHERE slug = :slug");
+        $this->db->bind("slug", $slug);
+        return $this->db->results();
     }
 	
     //Alterar status do post
