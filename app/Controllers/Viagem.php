@@ -80,7 +80,6 @@
 			else{
 				$dateTime = date('dmYhis');
 				$path = $campo.$dateTime.$nome;
-				//$diretorio = URL."/public/img/";
 				$diretorio = "img/";
 				move_uploaded_file($nomeTemp, $diretorio . $path);
 				return $path;
