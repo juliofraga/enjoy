@@ -11,7 +11,7 @@ class ViagemModel
 	//Retorna todos os posts cadastrados
     public function buscaPosts()
     {
-        $this->db->query("SELECT * FROM post order by datpos DESC");
+        $this->db->query("SELECT slug, local, ponpos, ponneg, ovevia, datpos, camimg1 FROM post WHERE stapos = 'Aprovado' order by datpos DESC");
         return $this->db->results();
     }
 	//cadastrar post

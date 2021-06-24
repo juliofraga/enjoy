@@ -17,14 +17,13 @@
         }
 		//exibir viagens cadastradas no sistema
         public function postagens(){
-            $dados = [
-                "dados"  => "",
-                "status" => ""
+			$dados = [
+                "dados"  => $this->viagemModel->buscaPosts()
             ];
             $this->view('viagem/postagens', $dados);
         }
 		//exibir um post específico
-        public function post($id = null){
+        public function post($slug){
             $dados = [
                 "dados"  => "",
                 "status" => ""
