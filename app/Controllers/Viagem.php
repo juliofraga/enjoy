@@ -5,6 +5,7 @@
         public function __construct()
         {
 			$this->viagemModel = $this->model('ViagemModel');
+			$this->helpers = new Helpers();
         }
         //exibir tela para postagem do usuário
         public function postar(){
@@ -31,22 +32,23 @@
             $this->view('viagem/post', $dados);
         }
 		//inserir no banco de dados as informações da viagem
-		//INSERIR NO BANCO OPÇÃO PARA TER TÍTULO DO POST//
+		//INSERIR NO BANCO OPÇÃO PARA TER TÍTULO DO POST E LOCAL PARA ONDE FOI A VIAGEM//
 		public function cadastrar(){
 			$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             if(isset($form['finalizar'])){
 				$dados = [
 					"nome" => trim($form["txtNome"]),
-					"localViagem" => trim($form["txtLocalViagem"]), 
-					"data" => trim($form["dtQuando"]),
-					"maisGostou" => trim($form["txtMaisGostou"]),
-					"menosGostou" => trim($form["txtMenosGostou"]),
-					"comentarios" => trim($form["txtComentarios"]),
-					"instagram" => trim($form["txtInstagram"]),
-					"autorizacao" => trim($form["selAutoriza"]),
-					"img1" => $this->trataImagem($_FILES["img1"]["name"], $_FILES['img1']['tmp_name'], "img1"),
-					"img2" => $this->trataImagem($_FILES["img2"]["name"], $_FILES['img2']['tmp_name'], "img2"),
-					"img3" => $this->trataImagem($_FILES["img3"]["name"], $_FILES['img3']['tmp_name'], "img3")
+					"localViagem" 		=> trim($form["txtLocalViagem"]), 
+					"slug"				=> $this->helpers->criaSlug($form["txtLocalViagem"], $form["dtQuando"]),
+					"data" 				=> trim($form["dtQuando"]),
+					"maisGostou" 		=> trim($form["txtMaisGostou"]),
+					"menosGostou" 		=> trim($form["txtMenosGostou"]),
+					"comentarios" 		=> trim($form["txtComentarios"]),
+					"instagram" 		=> trim($form["txtInstagram"]),
+					"autorizacao" 		=> trim($form["selAutoriza"]),
+					"img1" 				=> $this->trataImagem($_FILES["img1"]["name"], $_FILES['img1']['tmp_name'], "img1"),
+					"img2" 				=> $this->trataImagem($_FILES["img2"]["name"], $_FILES['img2']['tmp_name'], "img2"),
+					"img3" 				=> $this->trataImagem($_FILES["img3"]["name"], $_FILES['img3']['tmp_name'], "img3")
 				];
 				if(empty($dados["localViagem"])){
 					$dados = [
@@ -61,12 +63,19 @@
 					];
 					$this->view('viagem/finalizar', $dados);
 				}else{
-					//insere no banco
-					$dados = [
-						"resultado" => "sucesso",
-                        "mensagem"  => "Obrigado por nos contar a sua experiência, em breve vamos liberar o seu post no nosso blog!!"
-					];
-					$this->view('viagem/finalizar', $dados);
+					if($this->viagemModel->cadastrar($dados)){
+						$dados = [
+							"resultado" => "sucesso",
+							"mensagem"  => "Obrigado por nos contar a sua experiência, em breve vamos liberar o seu post no nosso blog!!"
+						];
+						$this->view('viagem/finalizar', $dados);
+					}else{
+						$dados = [
+							"resultado" => "erro",
+							"mensagem"  => "Erro ao salvar dados no banco de dados, envie uma mensagem para o administador do sistema!"
+						];
+						$this->view('viagem/finalizar', $dados);
+					}
 				}
 			}else{
                 $this->view('viagem/postar');

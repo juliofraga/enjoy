@@ -17,9 +17,10 @@ class ViagemModel
 	//cadastrar post
     public function cadastrar($dados)
     {
-		$this->db->query("INSERT INTO post(nomaut, despos, datvia, ponpos, ponneg, ovevia, insaut, autcom, camimg1, camimg2, camimg3, stapos) VALUES (:nome, :descricao, :data, :pontopositivo, :pontonegativo, :overview, :instagram, :autorizacao, :imagem1, :imagem2, :imagem3, :status)");
+		$this->db->query("INSERT INTO post(nomaut, local, slug, datvia, ponpos, ponneg, ovevia, insaut, autcom, camimg1, camimg2, camimg3, stapos) VALUES (:nome, :local, :slug, :data, :pontopositivo, :pontonegativo, :overview, :instagram, :autorizacao, :imagem1, :imagem2, :imagem3, :status)");
         $this->db->bind("nome", $dados['nome']);
 		$this->db->bind("local", $dados['localViagem']);
+		$this->db->bind("slug", $dados['slug']);
 		$this->db->bind("data", $dados['data']);
 		$this->db->bind("pontopositivo", $dados['maisGostou']);
 		$this->db->bind("pontonegativo", $dados['menosGostou']);
@@ -29,7 +30,7 @@ class ViagemModel
 		$this->db->bind("imagem1", $dados['img1']);
 		$this->db->bind("imagem2", $dados['img2']);
 		$this->db->bind("imagem3", $dados['img3']);
-		$this->db->bind("status", $dados['Pendente']);
+		$this->db->bind("status", "Pendente");
 
         if($this->db->execQuery()){
             return true;
