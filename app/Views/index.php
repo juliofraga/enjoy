@@ -15,7 +15,7 @@
           <div class="carousel-caption text-start">
             <h1>Conte-nos a sua experiência.</h1>
             <p>Queremos contar a sua experiência de viagem, ajude a tirar as dúvidas de quem quer ir para um destino que você conhece.</p>
-            <p><a class="btn btn-lg btn-primary" href="postar.html">Conte a sua viagem</a></p>
+            <p><a class="btn btn-lg btn-primary" href="<?= URL ?>/viagem/postar">Conte a sua viagem</a></p>
           </div>
         </div>
       </div>
