@@ -42,7 +42,10 @@ class ViagemModel
 	//Buscar post por slug
     public function buscaPorSlug($slug)
     {
-        $this->db->query("SELECT * FROM post WHERE slug = :slug");
+        $this->db->query("UPDATE post SET numvis = numvis + 1 WHERE slug = :slug");
+		$this->db->bind("slug", $slug);
+		$this->db->execQuery();
+		$this->db->query("SELECT * FROM post WHERE slug = :slug");
         $this->db->bind("slug", $slug);
         return $this->db->results();
     }
