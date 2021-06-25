@@ -20,7 +20,7 @@
                         <a class="nav-link" href="<?= URL ?>/usuario/cadastro">Cadastro de Usuários</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= URL ?>/admin/aprovacao">Aprovação de Postagens</a>
+                        <a class="nav-link" href="<?= URL ?>/viagem/aprovacao">Aprovação de Postagens</a>
                     </li>
                 </ul>
                 <form class="d-flex">

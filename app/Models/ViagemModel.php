@@ -38,11 +38,19 @@ class ViagemModel
             return false;
         }
     }
-	//Verificar se título do post já existe
+	//Buscar post por slug
     public function buscaPorSlug($slug)
     {
         $this->db->query("SELECT * FROM post WHERE slug = :slug");
         $this->db->bind("slug", $slug);
+        return $this->db->results();
+    }
+	
+	//Buscar por posts pendentes de aprovação
+    public function buscaPendentesAprovacao()
+    {
+        $this->db->query("SELECT * FROM post WHERE status = :status");
+        $this->db->bind("status", "Pendente");
         return $this->db->results();
     }
 	

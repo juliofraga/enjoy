@@ -83,6 +83,14 @@
             }
 		}
 		
+		// Listar viagens pendentes de aprovação
+		public function aprovacao(){
+            $dados = [
+                "dados"  => $this->viagemModel->buscaPendentesAprovacao()
+            ];
+            $this->view('viagem/aprovacao', $dados);
+        }
+		
 		//tratar imagem recebida do formulário
 		private function trataImagem($nome = null, $nomeTemp = null, $campo){
 			if(empty($nome))
