@@ -5,6 +5,7 @@
         public function __construct()
         {
 			$this->usuarioModel = $this->model('UsuarioModel');
+			$this->viagemModel = $this->model('ViagemModel');
 			$this->helpers = new Helpers();
         }
         
@@ -56,7 +57,10 @@
 		
 		public function configurar(){
 			if($this->helpers->sessionValidate()){
-				$this->view('admin/configurar');
+				$dados = [
+					"maisVisitados" => $this->viagemModel->postsMaisVisitados()
+				];
+				$this->view('admin/configurar', $dados);
 			}else
 				$this->view('pagenotfound');
 		}

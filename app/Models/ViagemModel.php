@@ -76,4 +76,9 @@ class ViagemModel
         $this->db->bind("codigo", $codigo);
 		$this->db->execQuery();
 	}
+	
+	public function postsMaisVisitados(){
+		$this->db->query("SELECT local, numvis, slug FROM post ORDER BY numvis DESC LIMIT 5");
+        return $this->db->results();
+	}
 }

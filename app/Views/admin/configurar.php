@@ -89,20 +89,10 @@
 		</div>
 		<hr>
 		<h5>POSTS MAIS VISUALIZADOS</h5>
-		<div class="form-group row">
-          <label class="titulos">Local - 10</label>
-        </div>
-		<div class="form-group row">
-          <label class="titulos">Local - 8</label>
-        </div>
-		<div class="form-group row">
-          <label class="titulos">Local - 7</label>
-        </div>
-		<div class="form-group row">
-          <label class="titulos">Local - 6</label>
-        </div>
-		<div class="form-group row">
-          <label class="titulos">Local - 3</label>
-        </div>
+		<?php foreach($dados["maisVisitados"] as $posts){ ?>
+			<div class="form-group row">
+			  <label style="padding-top:10px"><?= $posts->local ?> - <?= $posts->numvis ?></label>
+			</div>
+		<?php }?>
     </div>
 </main>
