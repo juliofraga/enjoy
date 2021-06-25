@@ -86,34 +86,46 @@
 		
 		// Listar viagens pendentes de aprovação
 		public function aprovacao(){
-            $dados = [
-                "dados"  => $this->viagemModel->buscaPendentesAprovacao()
-            ];
-            $this->view('viagem/aprovacao', $dados);
+			if($this->helpers->sessionValidate()){
+				$dados = [
+					"dados"  => $this->viagemModel->buscaPendentesAprovacao()
+				];
+				$this->view('viagem/aprovacao', $dados);
+			}else
+				$this->view('pagenotfound');
         }
 		
 		//Aprovar postagem
-		public function aprovar($codigo){
-			$this->viagemModel->alteraStatusPost($codigo, "A");
-			echo "<script>window.location.href='".URL."/viagem/aprovacao';</script>";
+		public function aprovar($codigo = null){
+			if($this->helpers->sessionValidate()){
+				$this->viagemModel->alteraStatusPost($codigo, "A");
+				echo "<script>window.location.href='".URL."/viagem/aprovacao';</script>";
+			}else
+				$this->view('pagenotfound');
 		}
 		
 		//Recusar postagem
-		public function recusar($codigo){
-			$this->viagemModel->alteraStatusPost($codigo, "R");
-			echo "<script>window.location.href='".URL."/viagem/aprovacao';</script>";
+		public function recusar($codigo = null){
+			if($this->helpers->sessionValidate()){
+				$this->viagemModel->alteraStatusPost($codigo, "R");
+				echo "<script>window.location.href='".URL."/viagem/aprovacao';</script>";
+			}else
+				$this->view('pagenotfound');
 		}
 		
 		//Pré-visualizar um post
 		public function preview($slug = null){
-			if(empty($slug) or $slug == null){
+			if($this->helpers->sessionValidate()){
+				if(empty($slug) or $slug == null){
+					$this->view('pagenotfound');
+				}else{
+					$dados = [
+						"dados"  => $this->viagemModel->buscaPorSlug($slug)
+					];
+					$this->view('viagem/post', $dados);
+				}
+			}else
 				$this->view('pagenotfound');
-			}else{
-				$dados = [
-					"dados"  => $this->viagemModel->buscaPorSlug($slug)
-				];
-				$this->view('viagem/post', $dados);
-			}
 		}
 		
 		//tratar imagem recebida do formulário

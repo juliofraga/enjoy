@@ -9,26 +9,28 @@
 
         //Return if user is logged in the system or not
         public function sessionValidate(){
-            if(isset($_SESSION["fun_coduser"]) and isset($_SESSION["fun_prousu"])){
+            if(isset($_SESSION["betj_user"]))
                 return true;
-            }
-            else{
+            else
                 return false;   
-            }   
         }
+		
+		//função para setar uma sessão de usuario
+		public function setSession($usuario){
+			session_start("blog_enjoy_the_journey");
+			$_SESSION["betj_user"] = $usuario;
+		}
+		
+		public function fazLogoff(){
+			session_destroy();
+			echo "<script>window.location.href='".URL."';</script>";
+		}
 		
         //return São Paulo date time
         public function returnDateTime(){
             date_default_timezone_set('America/Sao_Paulo');
             $dateTime = date("Y-m-d H:i:s");
             return $dateTime;
-        }
-        //Return if the post is anonymous or not
-        public function isAnonymous($param){
-            if($param == 0)
-                return false;
-            else
-                return true;
         }
 		
 		//Cria slug do post 

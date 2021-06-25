@@ -5,18 +5,25 @@
         public function __construct()
         {
             $this->usuarioModel = $this->model('UsuarioModel');
+			$this->helpers = new Helpers();
         }
         
         //Exibir tela de cadastro de usuários
         public function cadastro(){
-            $this->view('usuario/cadastro');
+			if($this->helpers->sessionValidate())
+				$this->view('usuario/cadastro');
+			else
+				$this->view('pagenotfound');
         }
 
         public function cadastrados(){
-            $dados = [
-                "informacoes" => $this->usuarioModel->buscaUsuarios(),
-            ];
-            $this->view('usuario/cadastrados', $dados);
+			if($this->helpers->sessionValidate()){
+				$dados = [
+					"informacoes" => $this->usuarioModel->buscaUsuarios(),
+				];
+				$this->view('usuario/cadastrados', $dados);
+			}else
+				$this->view('pagenotfound');
         }
 
         //Cadastrar o usuário
@@ -64,9 +71,13 @@
                     }
                 }
             }else{
-                $this->view('usuario/cadastro');
+                $this->view('pagenotfound');
             }
         }
+		// fazer logoff
+		public function logoff(){
+			$this->helpers->fazLogoff();
+		}
 
         // Verificar se o e-mail informado já está cadastrado no sistema
         private function verificaEmailCadastrado($email){

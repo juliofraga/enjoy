@@ -5,6 +5,7 @@
         public function __construct()
         {
 			$this->usuarioModel = $this->model('UsuarioModel');
+			$this->helpers = new Helpers();
         }
         
 		//Exibir página para fazer login
@@ -44,7 +45,7 @@
 						];
 						$this->view('admin/index', $dados);
 					}else if(password_verify($senhaForm, $senha)){
-						//necessário iniciar variaveis de sessões
+						$this->helpers->setSession($form["txtUsuario"]);
 						echo "<script>window.location.href='".URL."';</script>";
 					}
 				}

@@ -16,12 +16,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= URL ?>/viagem/postagens">Postagens</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= URL ?>/usuario/cadastro">Cadastro de Usuários</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= URL ?>/viagem/aprovacao">Aprovação de Postagens</a>
-                    </li>
+					<?php if($help->sessionValidate()){?>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= URL ?>/usuario/cadastro">Cadastro de Usuários</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= URL ?>/viagem/aprovacao">Aprovação de Postagens</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?= URL ?>/usuario/logoff">Logoff</a>
+						</li>
+					<?php } ?>
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
