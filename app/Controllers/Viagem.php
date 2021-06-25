@@ -49,7 +49,8 @@
 					"autorizacao" 		=> trim($form["selAutoriza"]),
 					"img1" 				=> $this->trataImagem($_FILES["img1"]["name"], $_FILES['img1']['tmp_name'], "img1"),
 					"img2" 				=> $this->trataImagem($_FILES["img2"]["name"], $_FILES['img2']['tmp_name'], "img2"),
-					"img3" 				=> $this->trataImagem($_FILES["img3"]["name"], $_FILES['img3']['tmp_name'], "img3")
+					"img3" 				=> $this->trataImagem($_FILES["img3"]["name"], $_FILES['img3']['tmp_name'], "img3"),
+					"dataHora"			=> $this->helpers->returnDateTime()
 				];
 				if(empty($dados["localViagem"])){
 					$dados = [
@@ -91,6 +92,30 @@
             $this->view('viagem/aprovacao', $dados);
         }
 		
+		//Aprovar postagem
+		public function aprovar($codigo){
+			$this->viagemModel->alteraStatusPost($codigo, "A");
+			$this->aprovacao();
+		}
+		
+		//Recusar postagem
+		public function recusar($codigo){
+			$this->viagemModel->alteraStatusPost($codigo, "R");
+			$this->aprovacao();
+		}
+		
+		//Pré-visualizar um post
+		public function preview($slug = null){
+			if(empty($slug) or $slug == null){
+				$this->view('pagenotfound');
+			}else{
+				$dados = [
+					"dados"  => $this->viagemModel->buscaPorSlug($slug)
+				];
+				$this->view('viagem/post', $dados);
+			}
+		}
+		
 		//tratar imagem recebida do formulário
 		private function trataImagem($nome = null, $nomeTemp = null, $campo){
 			if(empty($nome))
@@ -103,6 +128,7 @@
 				return $path;
 			}
 		}
+		
     }
 
 ?>

@@ -17,7 +17,7 @@ class ViagemModel
 	//cadastrar post
     public function cadastrar($dados)
     {
-		$this->db->query("INSERT INTO post(nomaut, local, slug, datvia, ponpos, ponneg, ovevia, insaut, autcom, camimg1, camimg2, camimg3, stapos) VALUES (:nome, :local, :slug, :data, :pontopositivo, :pontonegativo, :overview, :instagram, :autorizacao, :imagem1, :imagem2, :imagem3, :status)");
+		$this->db->query("INSERT INTO post(nomaut, local, slug, datvia, ponpos, ponneg, ovevia, insaut, autcom, camimg1, camimg2, camimg3, datpos, stapos) VALUES (:nome, :local, :slug, :data, :pontopositivo, :pontonegativo, :overview, :instagram, :autorizacao, :imagem1, :imagem2, :imagem3, :datahora, :status)");
         $this->db->bind("nome", $dados['nome']);
 		$this->db->bind("local", $dados['localViagem']);
 		$this->db->bind("slug", $dados['slug']);
@@ -30,6 +30,7 @@ class ViagemModel
 		$this->db->bind("imagem1", $dados['img1']);
 		$this->db->bind("imagem2", $dados['img2']);
 		$this->db->bind("imagem3", $dados['img3']);
+		$this->db->bind("datahora", $dados['dataHora']);
 		$this->db->bind("status", "Pendente");
 
         if($this->db->execQuery()){
@@ -49,22 +50,22 @@ class ViagemModel
 	//Buscar por posts pendentes de aprovação
     public function buscaPendentesAprovacao()
     {
-        $this->db->query("SELECT * FROM post WHERE status = :status");
+        $this->db->query("SELECT local, ovevia, codpos, slug FROM post WHERE stapos = :status or stapos = :outroStatus");
         $this->db->bind("status", "Pendente");
+		$this->db->bind("outroStatus", "Recusado");
         return $this->db->results();
     }
 	
     //Alterar status do post
-    public function updateStatus($status, $codigo)
+    public function alteraStatusPost($codigo, $status)
     {
-		$this->db->query("UPDATE post SET status = :status WHERE codpos = :codigo");
-		$this->db->bind("status", $status);
+		$this->db->query("UPDATE post SET stapos = :status WHERE codpos = :codigo");
+		if($status == "A")
+			$this->db->bind("status", "Aprovado");
+		else if($status == "R")
+			$this->db->bind("status", "Recusado");
 		$this->db->bind("codigo", $codigo);
-
 		$this->db->execQuery();
-        if($this->db->numRows() > 0)
-            return true;
-        else
-            return false;
+
     }
 }

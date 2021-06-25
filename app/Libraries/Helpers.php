@@ -35,6 +35,8 @@
 		public function criaSlug($local, $data = null){
 			if($data == null)
 				$data = date('dmYhis');
+			else 
+				$data = $data.date('his');
 			$slug = $local."-".$data;
 			$mapa = [];
             $mapa['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]/?;:.,\\\'<>°ºª';
