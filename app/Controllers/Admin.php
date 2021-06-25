@@ -11,12 +11,16 @@
         
 		//Exibir página para fazer login
         public function index(){
-            $dados = [
-                "dados"  	=> "",
-                "status" 	=> "",
-				"resultado" => "",
-            ];
-            $this->view('admin/index', $dados);
+			if($this->helpers->sessionValidate()){
+				echo "<script>window.location.href='".URL."';</script>";
+			}else{
+				$dados = [
+					"dados"  	=> "",
+					"status" 	=> "",
+					"resultado" => "",
+				];
+				$this->view('admin/index', $dados);
+			}
         }
 		
 		//validar login
