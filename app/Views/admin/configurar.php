@@ -77,8 +77,22 @@
 							<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 							<div class="card-body">
 								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<a type="button" class="btn btn-sm btn-outline-secondary" href="">Alterar Post</a>
+									<div class="row">
+										<form method="POST" action="">
+											<div class="col-md-12">
+												<select class="form-control">
+													<option value="">Selecione...</option>
+													<?php foreach($dados["posts"] as $posts){ ?>
+														<option value="<?= $posts->codpos ?>"><?= $posts->slug ?></option>
+													<?php }?>
+												</select>
+											</div>
+									</div>
+									<div class="row">
+											<div class="col-md-1 mt-1">
+												<a type="submit" class="btn btn-sm btn-outline-secondary" href="">Alterar</a>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -89,8 +103,22 @@
 							<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 							<div class="card-body">
 								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<a type="button" class="btn btn-sm btn-outline-secondary" href="">Alterar Post</a>
+									<div class="row">
+										<form method="POST" action="">
+											<div class="col-md-12">
+												<select class="form-control">
+													<option value="">Selecione...</option>
+													<?php foreach($dados["posts"] as $posts){ ?>
+														<option value="<?= $posts->codpos ?>"><?= $posts->slug ?></option>
+													<?php }?>
+												</select>
+											</div>
+									</div>
+									<div class="row">
+											<div class="col-md-5 mt-1">
+												<a type="submit" class="btn btn-sm btn-outline-secondary" href="">Alterar</a>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>
@@ -101,8 +129,22 @@
 							<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
 							<div class="card-body">
 								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<a type="button" class="btn btn-sm btn-outline-secondary" href="">Alterar Post</a>
+									<div class="row">
+										<form method="POST" action="">
+											<div class="col-md-12">
+												<select class="form-control">
+													<option value="">Selecione...</option>
+													<?php foreach($dados["posts"] as $posts){ ?>
+														<option value="<?= $posts->codpos ?>"><?= $posts->slug ?></option>
+													<?php }?>
+												</select>
+											</div>
+									</div>
+									<div class="row">
+											<div class="col-md-5 mt-1">
+												<a type="submit" class="btn btn-sm btn-outline-secondary" href="">Alterar</a>
+											</div>
+										</form>
 									</div>
 								</div>
 							</div>

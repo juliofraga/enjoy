@@ -8,12 +8,20 @@ class ViagemModel
     {
         $this->db = new Database();
     }
-	//Retorna todos os posts cadastrados
+	//Retorna todos os posts cadastrados, ordenando por data da postagem
     public function buscaPosts()
     {
         $this->db->query("SELECT codpos, slug, local, ponpos, ponneg, ovevia, datpos, camimg1 FROM post WHERE stapos = 'Aprovado' order by datpos DESC");
         return $this->db->results();
     }
+	
+	//Retorna todos os posts cadastrados, ordenando por slug
+    public function buscaPostsPorSlug()
+    {
+        $this->db->query("SELECT codpos, slug FROM post WHERE stapos = 'Aprovado' order by slug ASC");
+        return $this->db->results();
+    }
+	
 	//cadastrar post
     public function cadastrar($dados)
     {

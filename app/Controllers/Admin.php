@@ -62,7 +62,8 @@
 		public function configurar(){
 			if($this->helpers->sessionValidate()){
 				$dados = [
-					"maisVisitados" => $this->viagemModel->postsMaisVisitados()
+					"maisVisitados" => $this->viagemModel->postsMaisVisitados(),
+					"posts"			=> $this->viagemModel->buscaPostsPorSlug()
 				];
 				$this->view('admin/configurar', $dados);
 			}else
