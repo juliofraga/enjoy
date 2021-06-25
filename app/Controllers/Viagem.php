@@ -95,13 +95,13 @@
 		//Aprovar postagem
 		public function aprovar($codigo){
 			$this->viagemModel->alteraStatusPost($codigo, "A");
-			$this->aprovacao();
+			echo "<script>window.location.href='".URL."/viagem/aprovacao';</script>";
 		}
 		
 		//Recusar postagem
 		public function recusar($codigo){
 			$this->viagemModel->alteraStatusPost($codigo, "R");
-			$this->aprovacao();
+			echo "<script>window.location.href='".URL."/viagem/aprovacao';</script>";
 		}
 		
 		//Pré-visualizar um post
