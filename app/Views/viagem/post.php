@@ -1,3 +1,6 @@
+<?php 
+    $help = new Helpers();
+?>
 <main style="background-color:white; width:100%;">
   <div class="container marketing">
       <!-- TIÍTULO E SUBTÍTULO -->
@@ -38,5 +41,14 @@
       </div>
       <hr class="featurette-divider">
       <!-- /END THE FEATURETTES -->
+		<?php if($help->sessionValidate()){ ?>
+			<div class="row">
+				<a class="btn btn-danger btn-sm" href="<?= URL ?>/viagem/excluir/<?= $dados["dados"][0]->codpos ?>">Excluir</a>
+			</div>
+			<div class="row mt-3" style="padding-bottom:5%;">
+				<a class="btn btn-secondary btn-sm" href="<?= URL ?>/viagem/recusar/<?= $dados["dados"][0]->codpos ?>">Inativar</a>
+			</div>
+		<?php } ?>
     </div><!-- /.container -->
+	
 </main>

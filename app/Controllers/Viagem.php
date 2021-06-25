@@ -113,6 +113,15 @@
 				$this->view('pagenotfound');
 		}
 		
+		//Excluir postagem
+		public function excluir($codigo = null){
+			if($this->helpers->sessionValidate()){
+				$this->viagemModel->excluiPost($codigo);
+				echo "<script>window.location.href='".URL."/viagem/postagens';</script>";
+			}else
+				$this->view('pagenotfound');
+		}
+		
 		//Pré-visualizar um post
 		public function preview($slug = null){
 			if($this->helpers->sessionValidate()){

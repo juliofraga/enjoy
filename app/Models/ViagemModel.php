@@ -11,7 +11,7 @@ class ViagemModel
 	//Retorna todos os posts cadastrados
     public function buscaPosts()
     {
-        $this->db->query("SELECT slug, local, ponpos, ponneg, ovevia, datpos, camimg1 FROM post WHERE stapos = 'Aprovado' order by datpos DESC");
+        $this->db->query("SELECT codpos, slug, local, ponpos, ponneg, ovevia, datpos, camimg1 FROM post WHERE stapos = 'Aprovado' order by datpos DESC");
         return $this->db->results();
     }
 	//cadastrar post
@@ -66,6 +66,11 @@ class ViagemModel
 			$this->db->bind("status", "Recusado");
 		$this->db->bind("codigo", $codigo);
 		$this->db->execQuery();
-
     }
+	
+	public function excluiPost($codigo){
+		$this->db->query("DELETE FROM post WHERE codpos = :codigo");
+        $this->db->bind("codigo", $codigo);
+		$this->db->execQuery();
+	}
 }
