@@ -53,6 +53,13 @@
 				$this->view('errornotfound');
 			}
 		}
+		
+		public function configurar(){
+			if($this->helpers->sessionValidate()){
+				$this->view('admin/configurar');
+			}else
+				$this->view('pagenotfound');
+		}
 
     }
 

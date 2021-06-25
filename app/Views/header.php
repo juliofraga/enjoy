@@ -24,6 +24,9 @@
 							<a class="nav-link" href="<?= URL ?>/viagem/aprovacao">Aprovação de Postagens</a>
 						</li>
 						<li class="nav-item">
+							<a class="nav-link" href="<?= URL ?>/admin/configurar">Configurar</a>
+						</li>
+						<li class="nav-item">
 							<a class="nav-link" href="<?= URL ?>/usuario/logoff">Logoff</a>
 						</li>
 					<?php } ?>
