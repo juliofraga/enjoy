@@ -90,9 +90,15 @@
 		<hr>
 		<h5>POSTS MAIS VISUALIZADOS</h5>
 		<?php foreach($dados["maisVisitados"] as $posts){ ?>
-			<div class="form-group row">
-			  <label style="padding-top:10px"><?= $posts->local ?> - <?= $posts->numvis ?></label>
+			<div class="form-group row mt-3">
+				<div class="col-md-2">
+					<label><?= $posts->local ?> - <?= $posts->numvis ?></label>
+				</div>
+				<div class="col-md-1">
+					<a class="btn btn-success btn-sm" href="<?= URL ?>/viagem/preview/<?= $posts->slug ?>">Ver Post</a>
+				</div>
 			</div>
+			<hr>
 		<?php }?>
     </div>
 </main>
