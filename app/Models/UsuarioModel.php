@@ -73,12 +73,15 @@ class UsuarioModel
             return false;
     }
     //Verificar se dados de acesso são validos
-    public function fazLogin($email, $senha)
+    public function fazLogin($email)
     {
-        $this->db->query("SELECT codusu FROM usuario WHERE emausu = :email and pasusu = :senha");
+        $this->db->query("SELECT pasusu FROM usuario WHERE emausu = :email and stausu = :status");
         $this->db->bind("email", $email);
-        $this->db->bind("senha", $senha);
+        $this->db->bind("status", "Ativo");
         $this->db->execQuery();
-        return $this->db->results();
+        if($this->db->numRows() > 0)
+            return $this->db->results();
+        else
+            return null;
     }
 }
