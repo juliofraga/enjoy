@@ -16,6 +16,7 @@
 				$this->view('pagenotfound');
         }
 
+        //exibir usários cadastrados
         public function cadastrados(){
 			if($this->helpers->sessionValidate()){
 				$dados = [
@@ -74,6 +75,67 @@
                 $this->view('pagenotfound');
             }
         }
+
+        //alterar/deletar usuário
+        public function alterar(){
+            $form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            if(isset($form['update'])){
+                $dados = [
+                    "codigo"    => $form["txtCodigo"],
+                    "nome"      => trim($form["txtNome"]),
+                    "email"     => trim($form["txtEmail"]),
+                    "senha"     => trim($form["txtSenha"]),
+                    "ConSenha"  => trim($form["txtConfirmaSenha"])
+                ];
+                if($dados["senha"] != $dados["ConSenha"]){
+                    $dados = [
+                        "resultado" => "erro",
+                        "mensagem"  => "Senhas não conferem, tente alterar novamente!",
+                        "informacoes" => $this->usuarioModel->buscaUsuarios(),
+                    ];
+                    $this->view('usuario/cadastrados', $dados);
+                }else{
+                    $dados["senha"] = password_hash($dados["senha"], PASSWORD_DEFAULT);
+                    if($this->usuarioModel->update($dados)){
+                            $dados = [
+                                "resultado" => "sucesso",
+                                "mensagem"  => "Usuário alterado com sucesso!",
+                                "informacoes" => $this->usuarioModel->buscaUsuarios(),
+                            ];
+                            $this->view('usuario/cadastrados', $dados);
+                    }else{
+                        $dados = [
+                            "resultado" => "erro",
+                            "mensagem"  => "Erro ao alterar o usuário, tente novamente!",
+                            "informacoes" => $this->usuarioModel->buscaUsuarios(),
+                        ];
+                        $this->view('usuario/cadastrados', $dados);
+                    }
+                }
+            }else if(isset($form['delete'])){
+                $dados = [
+                    "codigo"    => $form["txtCodigo"]
+                ];
+                if($this->usuarioModel->deletarUsuario($dados["codigo"])){
+                    $dados = [
+                        "resultado" => "sucesso",
+                        "mensagem"  => "Usuário deletado com sucesso!",
+                        "informacoes" => $this->usuarioModel->buscaUsuarios(),
+                    ];
+                    $this->view('usuario/cadastrados', $dados);
+                }else{
+                    $dados = [
+                        "resultado" => "erro",
+                        "mensagem"  => "Erro ao deletar o usuário, tente novamente!",
+                        "informacoes" => $this->usuarioModel->buscaUsuarios(),
+                    ];
+                    $this->view('usuario/cadastrados', $dados);
+                }
+            }else{
+                $this->view('pagenotfound');
+            }
+        }
+
 		// fazer logoff
 		public function logoff(){
 			$this->helpers->fazLogoff();

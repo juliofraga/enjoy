@@ -10,7 +10,7 @@
     <div class="carousel-inner">
       <!-- CAROUSEL ITEM -->
       <div class="carousel-item active">
-        <img src="<?= URL ?>/public/img/viagem.jpeg">
+        <img src="<?= URL ?>/public/img/capa/viagem-1.jpeg">
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Conte-nos a sua experiência.</h1>
@@ -21,7 +21,7 @@
       </div>
       <!-- CAROUSEL ITEM -->
       <div class="carousel-item">
-        <img src="<?= URL ?>/public/img/londres.jpeg">
+        <img src="<?= URL ?>/public/img/capa/sevilla.jpg">
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Londres</h1>
@@ -32,7 +32,7 @@
       </div>
       <!-- CAROUSEL ITEM -->
       <div class="carousel-item">
-        <img src="<?= URL ?>/public/img/maragogi.jpeg">
+        <img src="<?= URL ?>/public/img/capa/sanandres.jpg">
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Maragogi</h1>
