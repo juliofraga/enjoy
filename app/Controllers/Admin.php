@@ -6,6 +6,7 @@
         {
 			$this->usuarioModel = $this->model('UsuarioModel');
 			$this->viagemModel = $this->model('ViagemModel');
+			$this->configurarModel = $this->model('ConfigurarModel');
 			$this->helpers = new Helpers();
         }
         
@@ -59,15 +60,105 @@
 			}
 		}
 		
+		public function alterarImagem($num = 0){
+			if($this->helpers->sessionValidate() and $num >= 1 and $num <= 3 and $num != null and !empty($num)){
+				$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				$info = [
+					"img" => $this->trataImagem($_FILES["img"]["name"], $_FILES['img']['tmp_name'])
+				];
+				if($info["img"] != null){
+					$this->configurarModel->inserirImgPreview($info["img"], $num);
+				}
+				$this->configurar();
+
+			}else{
+				$this->view('pagenotfound');
+			}
+		}
+
+		public function alterarPost($num = 0){
+			if($this->helpers->sessionValidate() and $num >= 1 and $num <= 3 and $num != null and !empty($num)){
+				$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_NUMBER_INT);
+				$this->configurarModel->inserirPostPreview($form["selectPost"], $num);
+				$this->configurar();
+
+			}else{
+				$this->view('pagenotfound');
+			}
+		}
+
 		public function configurar(){
 			if($this->helpers->sessionValidate()){
 				$dados = [
 					"maisVisitados" => $this->viagemModel->postsMaisVisitados(),
-					"posts"			=> $this->viagemModel->buscaPostsPorSlug()
+					"posts"			=> $this->viagemModel->buscaPostsPorSlug(),
+					"img1"			=> $this->configurarModel->buscaImgPreview(1),
+					"img2"			=> $this->configurarModel->buscaImgPreview(2),
+					"img3"			=> $this->configurarModel->buscaImgPreview(3),
+					"post1"			=> $this->configurarModel->buscaPostPreview(1),
+					"post2"			=> $this->configurarModel->buscaPostPreview(2),
+					"post3"			=> $this->configurarModel->buscaPostPreview(3)
 				];
 				$this->view('admin/configurar', $dados);
 			}else
 				$this->view('pagenotfound');
+		}
+
+		public function aplicarAlteracoesImg(){
+			if($this->helpers->sessionValidate()){
+				if($this->configurarModel->aplicarAlteracoesImg())
+					$this->configurar();
+				else{
+					$this->configurar();
+				}
+			}else
+				$this->view('pagenotfound');
+		}
+
+		public function descartarAlteracoesImg(){
+			if($this->helpers->sessionValidate()){
+				if($this->configurarModel->descartarAlteracoesImg())
+					$this->configurar();
+				else{
+					$this->configurar();
+				}
+			}else
+				$this->view('pagenotfound');
+		}
+
+		public function descartarAlteracoesPosts(){
+			if($this->helpers->sessionValidate()){
+				if($this->configurarModel->descartarAlteracoesPosts())
+					$this->configurar();
+				else{
+					$this->configurar();
+				}
+			}else
+				$this->view('pagenotfound');
+		}
+
+		public function aplicarAlteracoesPosts(){
+			if($this->helpers->sessionValidate()){
+				if($this->configurarModel->aplicarAlteracoesPosts())
+					$this->configurar();
+				else{
+					$this->configurar();
+				}
+			}else
+				$this->view('pagenotfound');
+		}
+
+		//tratar imagem recebida do formulário
+		private function trataImagem($nome = null, $nomeTemp = null){
+			if(empty($nome))
+				return null;
+			else{
+				$dateTime = date('dmYhis');
+				$path = $dateTime.$nome;
+				$diretorio = "img/home/";
+				move_uploaded_file($nomeTemp, $diretorio . $path);
+				return $path;
+			}
 		}
 
     }

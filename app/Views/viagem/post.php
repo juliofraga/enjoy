@@ -5,7 +5,7 @@
   <div class="container marketing">
       <!-- TIÍTULO E SUBTÍTULO -->
       <h1 style="text-align:center; padding-top:70px;padding-bottom:80px;"><?= $dados["dados"][0]->local ?></h1>
-      <h3 style="text-align:center; padding-top:10px;padding-bottom:80px;"><?= $dados["dados"][0]->datvia ?></h3>
+      <h3 style="text-align:center; padding-top:10px;padding-bottom:80px;"><?= $help->formataData($dados["dados"][0]->datvia) ?></h3>
       <!-- START THE FEATURETTES -->
   
       <div class="row featurette">
@@ -14,7 +14,17 @@
           <p class="lead"><?= $dados["dados"][0]->ovevia ?></p>
         </div>
         <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+          <?php 
+            if(empty($dados[0][0])){
+          ?>
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">No image :(</text></svg>
+          <?php 
+            }else{
+          ?>
+            <img width="500" height="500" src="<?= URL ?>/public/img/<?=$dados[0][0]?>">
+          <?php
+            }
+          ?>
         </div>
       </div>
       <hr class="featurette-divider">
@@ -25,7 +35,17 @@
           <p class="lead"><?= $dados["dados"][0]->ponpos ?></p>
         </div>
         <div class="col-md-5 order-md-1">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+          <?php 
+            if(empty($dados[0][1])){
+          ?>
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">No image :(</text></svg>
+          <?php 
+            }else{
+          ?>
+            <img width="500" height="500" src="<?= URL ?>/public/img/<?=$dados[0][1]?>">
+          <?php
+            }
+          ?>
         </div>
       </div>
       <hr class="featurette-divider">
@@ -36,7 +56,17 @@
           <p class="lead"><?= $dados["dados"][0]->ponneg ?></p>
         </div>
         <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+          <?php 
+            if(empty($dados[0][2])){
+          ?>
+          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">No image :(</text></svg>
+          <?php 
+            }else{
+          ?>
+            <img width="500" height="500" src="<?= URL ?>/public/img/<?=$dados[0][2]?>">
+          <?php
+            }
+          ?>
         </div>
       </div>
       <hr class="featurette-divider">

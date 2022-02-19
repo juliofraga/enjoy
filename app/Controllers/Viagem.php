@@ -28,60 +28,59 @@
 				$this->view('pagenotfound');
 			}else{
 				$dados = [
-					"dados"  => $this->viagemModel->buscaPorSlug($slug)
+					"dados"  => $this->viagemModel->buscaPorSlug($slug, "exibir")
 				];
+				$imagens = $this->realocaImagens($dados);
+				array_push($dados, $imagens);
 				$this->view('viagem/post', $dados);
 			}
         }
+
 		//inserir no banco de dados as informações da viagem
 		public function cadastrar(){
 			$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-            if(isset($form['finalizar'])){
+			$dados = [
+				"nome" => trim($form["txtNome"]),
+				"localViagem" 		=> trim($form["txtLocalViagem"]), 
+				"slug"				=> $this->helpers->criaSlug($form["txtLocalViagem"], $form["dtQuando"]),
+				"data" 				=> trim($form["dtQuando"]),
+				"maisGostou" 		=> trim($form["txtMaisGostou"]),
+				"menosGostou" 		=> trim($form["txtMenosGostou"]),
+				"comentarios" 		=> trim($form["txtComentarios"]),
+				"instagram" 		=> trim($form["txtInstagram"]),
+				"autorizacao" 		=> trim($form["selAutoriza"]),
+				"img1" 				=> $this->trataImagem($_FILES["img1"]["name"], $_FILES['img1']['tmp_name'], "img1"),
+				"img2" 				=> $this->trataImagem($_FILES["img2"]["name"], $_FILES['img2']['tmp_name'], "img2"),
+				"img3" 				=> $this->trataImagem($_FILES["img3"]["name"], $_FILES['img3']['tmp_name'], "img3"),
+				"dataHora"			=> $this->helpers->returnDateTime()
+			];
+			if(empty($dados["localViagem"])){
 				$dados = [
-					"nome" => trim($form["txtNome"]),
-					"localViagem" 		=> trim($form["txtLocalViagem"]), 
-					"slug"				=> $this->helpers->criaSlug($form["txtLocalViagem"], $form["dtQuando"]),
-					"data" 				=> trim($form["dtQuando"]),
-					"maisGostou" 		=> trim($form["txtMaisGostou"]),
-					"menosGostou" 		=> trim($form["txtMenosGostou"]),
-					"comentarios" 		=> trim($form["txtComentarios"]),
-					"instagram" 		=> trim($form["txtInstagram"]),
-					"autorizacao" 		=> trim($form["selAutoriza"]),
-					"img1" 				=> $this->trataImagem($_FILES["img1"]["name"], $_FILES['img1']['tmp_name'], "img1"),
-					"img2" 				=> $this->trataImagem($_FILES["img2"]["name"], $_FILES['img2']['tmp_name'], "img2"),
-					"img3" 				=> $this->trataImagem($_FILES["img3"]["name"], $_FILES['img3']['tmp_name'], "img3"),
-					"dataHora"			=> $this->helpers->returnDateTime()
+					"resultado" => "erro",
+					"mensagem"  => "O local da viagem deve ser informado!"
 				];
-				if(empty($dados["localViagem"])){
+				$this->view('viagem/finalizar', $dados);
+			}else if(empty($dados["maisGostou"]) and empty($dados["menosGostou"]) and empty($dados["comentarios"])){
+				$dados = [
+					"resultado" => "erro",
+					"mensagem"  => "Não conseguimos registrar seu post, pois temos poucas informações, nos dê mais informações sobre a sua viagem, nos fale sobre algo que você gostou ou que não gostou, por exemplo!!"
+				];
+				$this->view('viagem/finalizar', $dados);
+			}else{
+				if($this->viagemModel->cadastrar($dados)){
 					$dados = [
-						"resultado" => "erro",
-                        "mensagem"  => "O local da viagem deve ser informado!"
-					];
-					$this->view('viagem/finalizar', $dados);
-				}else if(empty($dados["maisGostou"]) and empty($dados["maisGostou"]) and empty($dados["comentarios"])){
-					$dados = [
-						"resultado" => "erro",
-                        "mensagem"  => "Não conseguimos registrar seu post, pois temos poucas informações, nos dê mais informações sobre a sua viagem, nos fale sobre algo que você gostou ou que não gostou, por exemplo!!"
+						"resultado" => "sucesso",
+						"mensagem"  => "Obrigado por nos contar a sua experiência, em breve vamos liberar o seu post no nosso blog!!"
 					];
 					$this->view('viagem/finalizar', $dados);
 				}else{
-					if($this->viagemModel->cadastrar($dados)){
-						$dados = [
-							"resultado" => "sucesso",
-							"mensagem"  => "Obrigado por nos contar a sua experiência, em breve vamos liberar o seu post no nosso blog!!"
-						];
-						$this->view('viagem/finalizar', $dados);
-					}else{
-						$dados = [
-							"resultado" => "erro",
-							"mensagem"  => "Erro ao salvar dados no banco de dados, envie uma mensagem para o administador do sistema!"
-						];
-						$this->view('viagem/finalizar', $dados);
-					}
+					$dados = [
+						"resultado" => "erro",
+						"mensagem"  => "Erro ao salvar dados no banco de dados, envie uma mensagem para o administador do sistema!"
+					];
+					$this->view('viagem/finalizar', $dados);
 				}
-			}else{
-                $this->view('viagem/postar');
-            }
+			}
 		}
 		
 		// Listar viagens pendentes de aprovação
@@ -129,8 +128,10 @@
 					$this->view('pagenotfound');
 				}else{
 					$dados = [
-						"dados"  => $this->viagemModel->buscaPorSlug($slug)
+						"dados"  => $this->viagemModel->buscaPorSlug($slug, "preview")
 					];
+					$imagens = $this->realocaImagens($dados);
+					array_push($dados, $imagens);
 					$this->view('viagem/post', $dados);
 				}
 			}else
@@ -148,6 +149,33 @@
 				move_uploaded_file($nomeTemp, $diretorio . $path);
 				return $path;
 			}
+		}
+
+		private function realocaImagens($array){
+			$img1 = "";
+			$img2 = "";
+			$img3 = "";
+			if($array["dados"][0]->camimg1 != null and $array["dados"][0]->camimg2 == null and $array["dados"][0]->camimg3 == null){
+				$img1 = $array["dados"][0]->camimg1;
+			}else if($array["dados"][0]->camimg1 == null and $array["dados"][0]->camimg2 != null and $array["dados"][0]->camimg3 == null){
+				$img1 = $array["dados"][0]->camimg2;
+			}else if($array["dados"][0]->camimg1 == null and $array["dados"][0]->camimg2 == null and $array["dados"][0]->camimg3 != null){
+				$img1 = $array["dados"][0]->camimg3;
+			}else if($array["dados"][0]->camimg1 != null and $array["dados"][0]->camimg2 != null and $array["dados"][0]->camimg3 == null){
+				$img1 = $array["dados"][0]->camimg1;
+				$img2 = $array["dados"][0]->camimg2;
+			}else if($array["dados"][0]->camimg1 != null and $array["dados"][0]->camimg2 == null and $array["dados"][0]->camimg3 != null){
+				$img1 = $array["dados"][0]->camimg1;
+				$img2 = $array["dados"][0]->camimg3;
+			}else if($array["dados"][0]->camimg1 == null and $array["dados"][0]->camimg2 != null and $array["dados"][0]->camimg3 != null){
+				$img1 = $array["dados"][0]->camimg2;
+				$img2 = $array["dados"][0]->camimg3;
+			}else if($array["dados"][0]->camimg1 != null and $array["dados"][0]->camimg2 != null and $array["dados"][0]->camimg3 != null){
+				$img1 = $array["dados"][0]->camimg1;
+				$img2 = $array["dados"][0]->camimg2;
+				$img3 = $array["dados"][0]->camimg3;
+			}
+			return [$img1, $img2, $img3];			
 		}
 		
     }

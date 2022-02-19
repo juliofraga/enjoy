@@ -1,3 +1,6 @@
+<?php 
+    $help = new Helpers();
+?>
 <main>
   <div class="album py-5 bg-light">
     <div class="container">
@@ -24,7 +27,7 @@
 					<div class="btn-group">
 					  <a type="button" class="btn btn-sm btn-outline-secondary" href="<?= URL?>/Viagem/post/<?= $posts->slug ?>">Visualizar</a>
 					</div>
-					<small class="text-muted"><?= $posts->datpos ?></small>
+					<small class="text-muted"><?= $help->formataData($posts->datpos) ?></small>
 				  </div>
 				</div>
 			  </div>

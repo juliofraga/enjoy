@@ -50,6 +50,14 @@
 
             return strtolower(utf8_decode($url));
 		}
+
+        public function formataData($data){
+            $a = explode('-', $data);
+            $dataFormatada = $a[2]."/".$a[1]."/".$a[0];
+            if($dataFormatada == "00/00/0000")
+                $dataFormatada = "";
+            return $dataFormatada;
+        }
     }
 
 ?>

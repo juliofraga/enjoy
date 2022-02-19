@@ -48,11 +48,13 @@ class ViagemModel
         }
     }
 	//Buscar post por slug
-    public function buscaPorSlug($slug)
+    public function buscaPorSlug($slug, $tipo)
     {
-        $this->db->query("UPDATE post SET numvis = numvis + 1 WHERE slug = :slug");
-		$this->db->bind("slug", $slug);
-		$this->db->execQuery();
+        if($tipo == "exibir"){
+            $this->db->query("UPDATE post SET numvis = numvis + 1 WHERE slug = :slug");
+            $this->db->bind("slug", $slug);
+            $this->db->execQuery();
+        }
 		$this->db->query("SELECT * FROM post WHERE slug = :slug");
         $this->db->bind("slug", $slug);
         return $this->db->results();
@@ -89,4 +91,11 @@ class ViagemModel
 		$this->db->query("SELECT local, numvis, slug FROM post ORDER BY numvis DESC LIMIT 5");
         return $this->db->results();
 	}
+
+    public function buscaPostPorCod($id)
+    {
+		$this->db->query("SELECT * FROM post WHERE codpos = :id");
+        $this->db->bind("id", $id);
+        return $this->db->results();
+    }
 }
