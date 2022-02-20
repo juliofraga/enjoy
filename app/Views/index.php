@@ -10,7 +10,17 @@
     <div class="carousel-inner">
       <!-- CAROUSEL ITEM -->
       <div class="carousel-item active">
-        <img src="<?= URL ?>/public/img/capa/viagem-1.jpeg">
+        <?php 
+            if(!isset($dados["img1"][0]->img1)){
+        ?>
+            <img src="<?= URL ?>/public/img/home/padrao-preview.jpg">
+        <?php 
+            }else{
+        ?>
+            <img src="<?= URL ?>/public/img/home/<?=$dados["img1"][0]->img1?>">
+        <?php
+            }
+        ?>
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Conte-nos a sua experiência.</h1>
@@ -21,7 +31,17 @@
       </div>
       <!-- CAROUSEL ITEM -->
       <div class="carousel-item">
-        <img src="<?= URL ?>/public/img/capa/sevilla.jpg">
+        <?php 
+            if(!isset($dados["img2"][0]->img2)){
+        ?>
+            <img src="<?= URL ?>/public/img/home/padrao-preview.jpg">
+        <?php 
+            }else{
+        ?>
+            <img src="<?= URL ?>/public/img/home/<?=$dados["img2"][0]->img2?>">
+        <?php
+            }
+        ?>
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Londres</h1>
@@ -32,7 +52,17 @@
       </div>
       <!-- CAROUSEL ITEM -->
       <div class="carousel-item">
-        <img src="<?= URL ?>/public/img/capa/sanandres.jpg">
+        <?php 
+            if(!isset($dados["img3"][0]->img3)){
+        ?>
+            <img src="<?= URL ?>/public/img/home/padrao-preview.jpg">
+        <?php 
+            }else{
+        ?>
+            <img src="<?= URL ?>/public/img/home/<?=$dados["img3"][0]->img3?>">
+        <?php
+            }
+        ?>
         <div class="container">
           <div class="carousel-caption text-start">
             <h1>Maragogi</h1>
@@ -59,10 +89,31 @@
     <p>Primeiramente, seja bem vindo(a), agradecemos a sua visita ao nosso Blog, é muito importante para nós, e se chegou até aqui, sem dúvidas é porque também se interessa por viagens, então convidamos você a desbravar esse mundo de possibilidades onde vivemos, e compartilhar conosco a sua história!</p>
   </div>
   <div class="container">
-  <div class="row featurette">
+    <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+        <h2 class="featurette-heading">
+          <?php 
+            if(isset($dados["post1"]) and count($dados["post1"]) > 0)
+              echo $dados["post1"][0]->local;
+            else
+              echo "Local...";
+          ?>
+        </h2>
+        <p class="lead">
+          <?php 
+            if(isset($dados["post1"]) and count($dados["post1"]) > 0){
+              if(!empty($dados["post1"][0]->ovevia)){
+                echo $dados["post1"][0]->ovevia;
+              }else if(!empty($dados["post1"][0]->ponpos)){
+                echo $dados["post1"][0]->ponpos;
+              }else if(!empty($dados["post1"][0]->ponneg)){
+                echo $dados["post1"][0]->ponneg;
+              }
+            }
+            else
+              echo "Informações sobre o lugar...";
+          ?>
+        </p>
       </div>
       <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
@@ -73,8 +124,29 @@
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
+      <h2 class="featurette-heading">
+          <?php 
+            if(isset($dados["post2"]) and count($dados["post2"]) > 0)
+              echo $dados["post2"][0]->local;
+            else
+              echo "Local...";
+          ?>
+        </h2>
+        <p class="lead">
+          <?php 
+            if(isset($dados["post2"]) and count($dados["post2"]) > 0){
+              if(!empty($dados["post2"][0]->ovevia)){
+                echo $dados["post2"][0]->ovevia;
+              }else if(!empty($dados["post2"][0]->ponpos)){
+                echo $dados["post2"][0]->ponpos;
+              }else if(!empty($dados["post2"][0]->ponneg)){
+                echo $dados["post2"][0]->ponneg;
+              }
+            }
+            else
+              echo "Informações sobre o lugar...";
+          ?>
+        </p>
       </div>
       <div class="col-md-5 order-md-1">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
@@ -86,8 +158,29 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
+      <h2 class="featurette-heading">
+          <?php 
+            if(isset($dados["post3"]) and count($dados["post3"]) > 0)
+              echo $dados["post3"][0]->local;
+            else
+              echo "Local...";
+          ?>
+        </h2>
+        <p class="lead">
+          <?php 
+            if(isset($dados["post3"]) and count($dados["post3"]) > 0){
+              if(!empty($dados["post3"][0]->ovevia)){
+                echo $dados["post3"][0]->ovevia;
+              }else if(!empty($dados["post3"][0]->ponpos)){
+                echo $dados["post3"][0]->ponpos;
+              }else if(!empty($dados["post3"][0]->ponneg)){
+                echo $dados["post3"][0]->ponneg;
+              }
+            }
+            else
+              echo "Informações sobre o lugar...";
+          ?>
+        </p>
       </div>
       <div class="col-md-5">
         <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>

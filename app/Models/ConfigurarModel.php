@@ -9,7 +9,7 @@
         }
 
         public function inserirImgPreview($img, $pos){
-            $id = $this->buscaImgPreview($pos);
+            $id = $this->buscaImg($pos, 0);
             if($id != 0){
                 $this->deleteImgPreview($id[0]->id);
             }
@@ -27,7 +27,7 @@
         }
 
         public function inserirPostPreview($post, $pos){
-            $id = $this->buscaPostPreview($pos);
+            $id = $this->buscaPost($pos, 0);
             if($id != 0){
                 $this->deletePostPreview($id[0]->id);
             }
@@ -57,15 +57,15 @@
             $this->db->execQuery();
         }
 
-        public function buscaImgPreview($pos){
+        public function buscaImg($pos, $tipo){
             if($pos == 1){
-                $this->db->query("SELECT * FROM homepageimg WHERE img1 IS NOT NULL AND tipo = :zero");
+                $this->db->query("SELECT * FROM homepageimg WHERE img1 IS NOT NULL AND tipo = :tipo");
             }else if($pos == 2){
-                $this->db->query("SELECT * FROM homepageimg WHERE img2 IS NOT NULL AND tipo = :zero");
+                $this->db->query("SELECT * FROM homepageimg WHERE img2 IS NOT NULL AND tipo = :tipo");
             }else if($pos == 3){
-                $this->db->query("SELECT * FROM homepageimg WHERE img3 IS NOT NULL AND tipo = :zero");
+                $this->db->query("SELECT * FROM homepageimg WHERE img3 IS NOT NULL AND tipo = :tipo");
             }
-            $this->db->bind("zero", 0);
+            $this->db->bind("tipo", $tipo);
             $this->db->execQuery();
             if($this->db->numRows() > 0)
                 return $this->db->results();
@@ -73,15 +73,15 @@
                 return 0;
         }
 
-        public function buscaPostPreview($pos){
+        public function buscaPost($pos, $tipo){
             if($pos == 1){
-                $this->db->query("SELECT * FROM homepagepost WHERE post1 IS NOT NULL AND tipo = :zero");
+                $this->db->query("SELECT * FROM homepagepost WHERE post1 IS NOT NULL AND tipo = :tipo");
             }else if($pos == 2){
-                $this->db->query("SELECT * FROM homepagepost WHERE post2 IS NOT NULL AND tipo = :zero");
+                $this->db->query("SELECT * FROM homepagepost WHERE post2 IS NOT NULL AND tipo = :tipo");
             }else if($pos == 3){
-                $this->db->query("SELECT * FROM homepagepost WHERE post3 IS NOT NULL AND tipo = :zero");
+                $this->db->query("SELECT * FROM homepagepost WHERE post3 IS NOT NULL AND tipo = :tipo");
             }
-            $this->db->bind("zero", 0);
+            $this->db->bind("tipo", $tipo);
             $this->db->execQuery();
             if($this->db->numRows() > 0)
                 return $this->db->results();
@@ -90,14 +90,20 @@
         }
 
         public function aplicarAlteracoesImg(){
-            $this->db->query("UPDATE homepageimg SET tipo = :um WHERE tipo = :zero");
+            $this->db->query("DELETE FROM homepageimg WHERE tipo = :um");
             $this->db->bind("um", 1);
-            $this->db->bind("zero", 0);
-		    $this->db->execQuery();
-            if($this->db->numRows() > 0)
-                return true;
-            else
+            if($this->db->execQuery()){
+                $this->db->query("UPDATE homepageimg SET tipo = :um WHERE tipo = :zero");
+                $this->db->bind("um", 1);
+                $this->db->bind("zero", 0);
+                $this->db->execQuery();
+                if($this->db->numRows() > 0)
+                    return true;
+                else
+                    return false;
+            }else{
                 return false;
+            }
         }
 
         public function descartarAlteracoesImg(){
@@ -121,14 +127,20 @@
         }
 
         public function aplicarAlteracoesPosts(){
-            $this->db->query("UPDATE homepagepost SET tipo = :um WHERE tipo = :zero");
+            $this->db->query("DELETE FROM homepagepost WHERE tipo = :um");
             $this->db->bind("um", 1);
-            $this->db->bind("zero", 0);
-		    $this->db->execQuery();
-            if($this->db->numRows() > 0)
-                return true;
-            else
+            if($this->db->execQuery()){
+                $this->db->query("UPDATE homepagepost SET tipo = :um WHERE tipo = :zero");
+                $this->db->bind("um", 1);
+                $this->db->bind("zero", 0);
+                $this->db->execQuery();
+                if($this->db->numRows() > 0)
+                    return true;
+                else
+                    return false;
+            }else{
                 return false;
+            }
         }
     }
 ?>

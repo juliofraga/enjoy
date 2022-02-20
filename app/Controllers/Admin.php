@@ -92,12 +92,12 @@
 				$dados = [
 					"maisVisitados" => $this->viagemModel->postsMaisVisitados(),
 					"posts"			=> $this->viagemModel->buscaPostsPorSlug(),
-					"img1"			=> $this->configurarModel->buscaImgPreview(1),
-					"img2"			=> $this->configurarModel->buscaImgPreview(2),
-					"img3"			=> $this->configurarModel->buscaImgPreview(3),
-					"post1"			=> $this->configurarModel->buscaPostPreview(1),
-					"post2"			=> $this->configurarModel->buscaPostPreview(2),
-					"post3"			=> $this->configurarModel->buscaPostPreview(3)
+					"img1"			=> $this->configurarModel->buscaImg(1, BUSCA_POST_PREVIEW),
+					"img2"			=> $this->configurarModel->buscaImg(2, BUSCA_POST_PREVIEW),
+					"img3"			=> $this->configurarModel->buscaImg(3, BUSCA_POST_PREVIEW),
+					"post1"			=> $this->configurarModel->buscaPost(1, BUSCA_POST_PREVIEW),
+					"post2"			=> $this->configurarModel->buscaPost(2, BUSCA_POST_PREVIEW),
+					"post3"			=> $this->configurarModel->buscaPost(3, BUSCA_POST_PREVIEW)
 				];
 				$this->view('admin/configurar', $dados);
 			}else
