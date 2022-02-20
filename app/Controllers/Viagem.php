@@ -16,10 +16,12 @@
             $this->view('viagem/postar', $dados);
         }
 		//exibir viagens cadastradas no sistema
-        public function posts(){
-			$dados = [
-                "dados"  => $this->viagemModel->buscaPosts()
-            ];
+        public function posts($dados = null){
+			if($dados == null){
+				$dados = [
+					"dados"  => $this->viagemModel->buscaPosts()
+				];
+			}
             $this->view('viagem/posts', $dados);
         }
 		//exibir um post específico
@@ -137,6 +139,22 @@
 			}else
 				$this->view('pagenotfound');
 		}
+
+		public function search(){
+			$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			if(isset($form['search'])){
+				if(empty($form['txtSearch'])){
+					echo "<script>window.location.href='".URL."';</script>";
+				}else{
+					$dados = [
+						"dados" => $this->viagemModel->search($this->searchFilter($form['txtSearch'])),
+					];
+				}
+				$this->posts($dados);
+			}else{
+				$this->view('pagenotfound');
+			}
+		}
 		
 		//tratar imagem recebida do formulário
 		private function trataImagem($nome = null, $nomeTemp = null, $campo){
@@ -176,6 +194,17 @@
 				$img3 = $array["dados"][0]->camimg3;
 			}
 			return [$img1, $img2, $img3];			
+		}
+
+		private function searchFilter($texto){
+			if(empty($texto))
+				return null;
+			else{
+				$substituiveis = array(" a ", " e ", "o ", " da "," de ", " do ", " para ");
+				$novoTexto = str_replace($substituiveis, " ", $texto);
+				$array = explode(" ", $novoTexto);
+				return $array;	
+			}
 		}
 		
     }

@@ -31,9 +31,9 @@
 						</li>
 					<?php } ?>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                <form class="d-flex" method="POST" action="<?= URL ?>/Viagem/search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="txtSearch" required>
+                    <input type="submit" value="Buscar" name="search" class="btn btn-outline-success">
                 </form>
             </div>
         </div>

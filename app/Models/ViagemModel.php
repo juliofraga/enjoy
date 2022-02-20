@@ -98,4 +98,19 @@ class ViagemModel
         $this->db->bind("id", $id);
         return $this->db->results();
     }
+
+    public function search($texto){
+        $where = '';
+        for($i = 0; $i < count($texto); $i++){
+            if($i > 0)
+                $where .= " or ";
+            $where .= "local like '%".$texto[$i].
+                      "%' or ponpos like '%".$texto[$i].
+                      "%' or ponneg like '%".$texto[$i].
+                      "%' or ovevia like '%".$texto[$i]. "%'";
+        }
+        $this->db->query("SELECT * FROM post WHERE stapos = :aprovado and ($where) ORDER BY numvis DESC");
+        $this->db->bind("aprovado", 'Aprovado');
+        return $this->db->results();
+    }
 }

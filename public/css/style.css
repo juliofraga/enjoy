@@ -196,3 +196,11 @@ span{
 .litteMarginLeft{
     margin-left: 1px;
 }
+
+.naoHaRegistros{
+    padding-top: 10%;
+    height: 0 auto;
+    min-height: 500px;
+    text-align: center;
+    width: 100%;
+}
