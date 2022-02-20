@@ -14,7 +14,7 @@
                         <a class="nav-link" href="<?= URL ?>/viagem/postar">Conte a sua viagem</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= URL ?>/viagem/postagens">Postagens</a>
+                        <a class="nav-link" href="<?= URL ?>/viagem/posts">Posts</a>
                     </li>
 					<?php if($help->sessionValidate()){?>
 						<li class="nav-item">

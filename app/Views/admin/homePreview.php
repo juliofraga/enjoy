@@ -116,7 +116,25 @@
         </p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <?php 
+					$imagem = null;
+					if($dados["post1"][0]->camimg1 != null)
+						$imagem = $dados["post1"][0]->camimg1;
+					else if($dados["post1"][0]->camimg2 != null)
+						$imagem = $dados["post1"][0]->camimg2;
+					else if($dados["post1"][0]->camimg3 != null)
+						$imagem = $dados["post1"][0]->camimg3;
+
+					if($imagem == null){
+				?>
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">No images :(</text></svg>
+        <?php
+					}else{
+				?>
+					<img src="<?= URL ?>/public/img/<?=$imagem?>" width="100%" height="100%">
+				<?php
+					}
+				?>
       </div>
     </div>
 
@@ -149,7 +167,25 @@
         </p>
       </div>
       <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <?php 
+					$imagem = null;
+					if($dados["post2"][0]->camimg1 != null)
+						$imagem = $dados["post2"][0]->camimg1;
+					else if($dados["post2"][0]->camimg2 != null)
+						$imagem = $dados["post2"][0]->camimg2;
+					else if($dados["post2"][0]->camimg3 != null)
+						$imagem = $dados["post2"][0]->camimg3;
+
+					if($imagem == null){
+				?>
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">No images :(</text></svg>
+        <?php
+					}else{
+				?>
+					<img src="<?= URL ?>/public/img/<?=$imagem?>" width="100%" height="100%">
+				<?php
+					}
+				?>
 
       </div>
     </div>
@@ -183,7 +219,25 @@
         </p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+        <?php 
+					$imagem = null;
+					if($dados["post3"][0]->camimg1 != null)
+						$imagem = $dados["post3"][0]->camimg1;
+					else if($dados["post3"][0]->camimg2 != null)
+						$imagem = $dados["post3"][0]->camimg2;
+					else if($dados["post3"][0]->camimg3 != null)
+						$imagem = $dados["post3"][0]->camimg3;
+
+					if($imagem == null){
+				?>
+            <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">No images :(</text></svg>
+        <?php
+					}else{
+				?>
+					<img src="<?= URL ?>/public/img/<?=$imagem?>" width="100%" height="100%">
+				<?php
+					}
+				?>
 
       </div>
     </div>

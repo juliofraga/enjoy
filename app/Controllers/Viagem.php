@@ -16,11 +16,11 @@
             $this->view('viagem/postar', $dados);
         }
 		//exibir viagens cadastradas no sistema
-        public function postagens(){
+        public function posts(){
 			$dados = [
                 "dados"  => $this->viagemModel->buscaPosts()
             ];
-            $this->view('viagem/postagens', $dados);
+            $this->view('viagem/posts', $dados);
         }
 		//exibir um post específico
         public function post($slug = null){
@@ -116,7 +116,7 @@
 		public function excluir($codigo = null){
 			if($this->helpers->sessionValidate()){
 				$this->viagemModel->excluiPost($codigo);
-				echo "<script>window.location.href='".URL."/viagem/postagens';</script>";
+				echo "<script>window.location.href='".URL."/viagem/posts';</script>";
 			}else
 				$this->view('pagenotfound');
 		}
