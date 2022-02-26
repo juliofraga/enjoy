@@ -98,7 +98,7 @@
 			</div>
 		</div>
 		<hr>
-		<h5 style="padding-top: 10%">POSTS NA PÁGINA INICIAL</h5>
+		<h5 class="espacoEntreSessoes">POSTS NA PÁGINA INICIAL</h5>
 		<div class="album py-5 bg-light">
 			<div class="container">
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -226,7 +226,30 @@
 			</div>
 		</div>
 		<hr>
-		<h5 style="padding-top: 10%">POSTS MAIS VISUALIZADOS</h5>
+		<h5 class="espacoEntreSessoes">TEXTOS DO SITE</h5>
+		<div class="form-group row">
+			<h6>Privacidade</h6>
+			<div class="col-md-12 mt-2">
+				<form method="POST" action="<?= URL ?>/Admin/atualizaTexto/privacidade">
+					<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" required name="texto"><?= $dados["textoPrivacidade"][0]->texto ?></textarea>
+					<div class="col-md-2 mt-4">
+						<select class="form-control" required name="status">
+							<?php
+								$selectedAtivado = $dados["textoPrivacidade"][0]->status == 'a' ? 'selected' : '';
+								$selectedDesativado = $dados["textoPrivacidade"][0]->status == 'd' ? 'selected' : '';
+							?>
+							<option value="a" <?= $selectedAtivado ?>>Ativado</option>
+							<option value="d" <?= $selectedDesativado ?>>Desativado</option>
+						</select>
+					</div>
+					<div class="col-md-12 mt-4">
+						<input type="submit" class="btn btn-primary" style="width:100%;" value="Atualizar" name="atualizar">
+					</div>
+				</form>
+			</div>
+		</div>
+		<hr>
+		<h5 class="espacoEntreSessoes">POSTS MAIS VISUALIZADOS</h5>
 		<?php foreach($dados["maisVisitados"] as $posts){ ?>
 			<div class="form-group row mt-3">
 				<div class="col-md-2">

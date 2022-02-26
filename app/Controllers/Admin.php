@@ -90,14 +90,15 @@
 		public function configurar(){
 			if($this->helpers->sessionValidate()){
 				$dados = [
-					"maisVisitados" => $this->viagemModel->postsMaisVisitados(),
-					"posts"			=> $this->viagemModel->buscaPostsPorSlug(),
-					"img1"			=> $this->configurarModel->buscaImg(1, BUSCA_POST_PREVIEW),
-					"img2"			=> $this->configurarModel->buscaImg(2, BUSCA_POST_PREVIEW),
-					"img3"			=> $this->configurarModel->buscaImg(3, BUSCA_POST_PREVIEW),
-					"post1"			=> $this->configurarModel->buscaPost(1, BUSCA_POST_PREVIEW),
-					"post2"			=> $this->configurarModel->buscaPost(2, BUSCA_POST_PREVIEW),
-					"post3"			=> $this->configurarModel->buscaPost(3, BUSCA_POST_PREVIEW)
+					"maisVisitados" 	=> $this->viagemModel->postsMaisVisitados(),
+					"posts"				=> $this->viagemModel->buscaPostsPorSlug(),
+					"img1"				=> $this->configurarModel->buscaImg(1, BUSCA_POST_PREVIEW),
+					"img2"				=> $this->configurarModel->buscaImg(2, BUSCA_POST_PREVIEW),
+					"img3"				=> $this->configurarModel->buscaImg(3, BUSCA_POST_PREVIEW),
+					"post1"				=> $this->configurarModel->buscaPost(1, BUSCA_POST_PREVIEW),
+					"post2"				=> $this->configurarModel->buscaPost(2, BUSCA_POST_PREVIEW),
+					"post3"				=> $this->configurarModel->buscaPost(3, BUSCA_POST_PREVIEW),
+					"textoPrivacidade"  => $this->configurarModel->buscaTexto("privacidade")
 				];
 				$this->view('admin/configurar', $dados);
 			}else
@@ -146,6 +147,16 @@
 				}
 			}else
 				$this->view('pagenotfound');
+		}
+
+		public function atualizaTexto($tipo){
+			if($this->helpers->sessionValidate()){
+				$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				$this->configurarModel->atualizaTexto($form['texto'], $form['status'], $tipo);
+				$this->configurar();
+			}else{
+				$this->view('pagenotfound');
+			}
 		}
 
 		//tratar imagem recebida do formulário

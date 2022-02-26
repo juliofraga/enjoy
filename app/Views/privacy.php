@@ -1,6 +1,7 @@
 <main class="bg-white">
     <div id="privacy">
-        <h1><center>PRIVACY POLICY</center></h1>
+        <?= $dados["textoPrivacidade"][0]->texto ?>
+       <!-- <h1><center>PRIVACY POLICY</center></h1>
         <h3>SECTION 1 - GENERAL INFORMATION</h3>
         <p>This Privacy Policy contains information on the collection, use, storage, treatment and protection of the personal data of users and visitors to the http://www.functionsrepository.com website, in order to demonstrate absolute transparency on the subject and to clarify to all interested parties about the types of data that are collected, the reasons for the collection and how users can manage or delete their personal information.
         This Privacy Policy applies to all users and visitors of the http://www.functionsrepository.com website and integrates the General Terms and Conditions of Use of the website http://www.functionsrepository.com</p>
@@ -40,6 +41,6 @@
         Faced with the merger or sale of the platform to another company, user data can be transferred to the new owners so that the services offered remain.</p>
         <h3>SECTION 12 - CONFLICT RESOLUTION JURISDICTION</h3>
         <p>For the settlement of disputes arising from this instrument, Brazilian law will be fully applied.
-        Any disputes must be submitted in the jurisdiction of the district in which the company is headquartered.</p>
+        Any disputes must be submitted in the jurisdiction of the district in which the company is headquartered.</p> -->
     </div>
 </main>

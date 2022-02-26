@@ -142,5 +142,31 @@
                 return false;
             }
         }
+
+        public function atualizaTexto($texto, $status, $tipo){
+            if($this->buscaTexto($tipo) === 0){
+                $this->db->query("INSERT INTO textos(nome, texto, status) VALUES (:nome, :texto, :status)");
+                $this->db->bind("nome", $tipo);
+                $this->db->bind("texto", $texto);
+                $this->db->bind("status", $status);
+                $this->db->execQuery();
+            }else{
+                $this->db->query("UPDATE textos SET texto = :texto, status = :status WHERE nome = :tipo");
+                $this->db->bind("texto", $texto);
+                $this->db->bind("status", $status);
+                $this->db->bind("tipo", $tipo);
+                $this->db->execQuery();
+            }
+        }
+
+        public function buscaTexto($tipo){
+            $this->db->query("SELECT * FROM textos WHERE nome = :tipo");
+            $this->db->bind("tipo", $tipo);
+            $this->db->execQuery();
+            if($this->db->numRows() > 0)
+                return $this->db->results();
+            else
+                return 0;
+        }
     }
 ?>
