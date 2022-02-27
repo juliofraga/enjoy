@@ -6,6 +6,8 @@
         {
 			$this->viagemModel = $this->model('ViagemModel');
 			$this->helpers = new Helpers();
+			$this->configurarModel = $this->model('ConfigurarModel');
+			$_SESSION["textoRodape"] = $this->configurarModel->buscaTexto("rodape");
         }
         //exibir tela para postagem do usuário
         public function postar(){

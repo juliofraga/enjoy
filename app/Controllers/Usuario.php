@@ -6,6 +6,8 @@
         {
             $this->usuarioModel = $this->model('UsuarioModel');
 			$this->helpers = new Helpers();
+            $this->configurarModel = $this->model('ConfigurarModel');
+            $_SESSION["textoRodape"] = $this->configurarModel->buscaTexto("rodape");
         }
         
         //Exibir tela de cadastro de usuários

@@ -26,6 +26,17 @@
 										</form>
 									</div>
 								</div>
+								<ul class="list-group list-group-flush mt-3">
+   									<li class="list-group-item">
+										<form method="POST" action="<?= URL ?>/Admin/alterarTextoImagem/1">
+											<label class="tituloCards">Título</label>
+											<input type="text" class="form-control" name="titulo">
+											<label class="tituloCards">Texto</label>
+											<textarea class="form-control" name="texto" rows=5></textarea>
+											<input type="submit" class="btn btn-primary mt-3 fullWidth" value="Alterar">
+										</form>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -51,6 +62,17 @@
 										</form>
 									</div>
 								</div>
+								<ul class="list-group list-group-flush mt-3">
+   									<li class="list-group-item">
+										<form method="POST" action="<?= URL ?>/Admin/alterarTextoImagem/2">
+											<label class="tituloCards">Título</label>
+											<input type="text" class="form-control" name="titulo">
+											<label class="tituloCards">Texto</label>
+											<textarea class="form-control" name="texto" rows=5></textarea>
+											<input type="submit" class="btn btn-primary mt-3 fullWidth" value="Alterar">
+										</form>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -76,6 +98,17 @@
 										</form>
 									</div>
 								</div>
+								<ul class="list-group list-group-flush mt-3">
+   									<li class="list-group-item">
+										<form method="POST" action="<?= URL ?>/Admin/alterarTextoImagem/3">
+											<label class="tituloCards">Título</label>
+											<input type="text" class="form-control" name="titulo">
+											<label class="tituloCards">Texto</label>
+											<textarea class="form-control" name="texto" rows=5></textarea>
+											<input type="submit" class="btn btn-primary mt-3 fullWidth" value="Alterar">
+										</form>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -227,27 +260,11 @@
 		</div>
 		<hr>
 		<h5 class="espacoEntreSessoes">TEXTOS DO SITE</h5>
-		<div class="form-group row">
-			<h6>Privacidade</h6>
-			<div class="col-md-12 mt-2">
-				<form method="POST" action="<?= URL ?>/Admin/atualizaTexto/privacidade">
-					<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" required name="texto"><?= $dados["textoPrivacidade"][0]->texto ?></textarea>
-					<div class="col-md-2 mt-4">
-						<select class="form-control" required name="status">
-							<?php
-								$selectedAtivado = $dados["textoPrivacidade"][0]->status == 'a' ? 'selected' : '';
-								$selectedDesativado = $dados["textoPrivacidade"][0]->status == 'd' ? 'selected' : '';
-							?>
-							<option value="a" <?= $selectedAtivado ?>>Ativado</option>
-							<option value="d" <?= $selectedDesativado ?>>Desativado</option>
-						</select>
-					</div>
-					<div class="col-md-12 mt-4">
-						<input type="submit" class="btn btn-primary" style="width:100%;" value="Atualizar" name="atualizar">
-					</div>
-				</form>
-			</div>
-		</div>
+		<?php 
+			include '../app/Views/admin/textos/privacidade.php';
+			include '../app/Views/admin/textos/home.php';
+			include '../app/Views/admin/textos/rodape.php'; 
+		?>
 		<hr>
 		<h5 class="espacoEntreSessoes">POSTS MAIS VISUALIZADOS</h5>
 		<?php foreach($dados["maisVisitados"] as $posts){ ?>

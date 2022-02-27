@@ -8,6 +8,7 @@
 			$this->viagemModel = $this->model('ViagemModel');
 			$this->configurarModel = $this->model('ConfigurarModel');
 			$this->helpers = new Helpers();
+			$_SESSION["textoRodape"] = $this->configurarModel->buscaTexto("rodape");
         }
         
 		//Exibir página para fazer login
@@ -98,7 +99,9 @@
 					"post1"				=> $this->configurarModel->buscaPost(1, BUSCA_POST_PREVIEW),
 					"post2"				=> $this->configurarModel->buscaPost(2, BUSCA_POST_PREVIEW),
 					"post3"				=> $this->configurarModel->buscaPost(3, BUSCA_POST_PREVIEW),
-					"textoPrivacidade"  => $this->configurarModel->buscaTexto("privacidade")
+					"textoPrivacidade"  => $this->configurarModel->buscaTexto("privacidade"),
+					"textoHome"  		=> $this->configurarModel->buscaTexto("home"),
+					"textoRodape"  		=> $this->configurarModel->buscaTexto("rodape")
 				];
 				$this->view('admin/configurar', $dados);
 			}else

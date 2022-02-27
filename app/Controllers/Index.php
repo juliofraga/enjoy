@@ -7,18 +7,20 @@
             $this->configurarModel = $this->model('ConfigurarModel');
             $this->viagemModel = $this->model('ViagemModel');
             $this->helpers = new Helpers();
+			$_SESSION["textoRodape"] = $this->configurarModel->buscaTexto("rodape");
         }
         
         public function index(){
             $dados = [
-                "dados"  => "",
-                "status" => "",
-                "img1" 	 => $this->configurarModel->buscaImg(1, BUSCA_POST_INDEX),
-                "img2"	 => $this->configurarModel->buscaImg(2, BUSCA_POST_INDEX),
-                "img3" 	 => $this->configurarModel->buscaImg(3, BUSCA_POST_INDEX),
-                "post1"  => $this->viagemModel->buscaPostPorCod($this->retornaPostId(1, BUSCA_POST_INDEX)),
-                "post2"  => $this->viagemModel->buscaPostPorCod($this->retornaPostId(2, BUSCA_POST_INDEX)),
-                "post3"  => $this->viagemModel->buscaPostPorCod($this->retornaPostId(3, BUSCA_POST_INDEX))
+                "dados"      => "",
+                "status"     => "",
+                "img1" 	     => $this->configurarModel->buscaImg(1, BUSCA_POST_INDEX),
+                "img2"	     => $this->configurarModel->buscaImg(2, BUSCA_POST_INDEX),
+                "img3" 	     => $this->configurarModel->buscaImg(3, BUSCA_POST_INDEX),
+                "post1"      => $this->viagemModel->buscaPostPorCod($this->retornaPostId(1, BUSCA_POST_INDEX)),
+                "post2"      => $this->viagemModel->buscaPostPorCod($this->retornaPostId(2, BUSCA_POST_INDEX)),
+                "post3"      => $this->viagemModel->buscaPostPorCod($this->retornaPostId(3, BUSCA_POST_INDEX)),
+                "textoHome"  => $this->configurarModel->buscaTexto("home")
             ];
             $this->view('index', $dados);
         }

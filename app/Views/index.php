@@ -86,7 +86,9 @@
 
 
   <div id="mensagem">
-    <p>Primeiramente, seja bem vindo(a), agradecemos a sua visita ao nosso Blog, é muito importante para nós, e se chegou até aqui, sem dúvidas é porque também se interessa por viagens, então convidamos você a desbravar esse mundo de possibilidades onde vivemos, e compartilhar conosco a sua história!</p>
+    <p>
+      <?= $dados["textoHome"][0]->texto ?>
+    </p>
   </div>
   <div class="container">
     <div class="row featurette">
