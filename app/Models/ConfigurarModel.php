@@ -143,18 +143,20 @@
             }
         }
 
-        public function atualizaTexto($texto, $status, $tipo){
+        public function atualizaTexto($texto, $status, $tipo, $titulo = null){
             if($this->buscaTexto($tipo) === 0){
-                $this->db->query("INSERT INTO textos(nome, texto, status) VALUES (:nome, :texto, :status)");
+                $this->db->query("INSERT INTO textos(nome, texto, status, titulo) VALUES (:nome, :texto, :status, :titulo)");
                 $this->db->bind("nome", $tipo);
                 $this->db->bind("texto", $texto);
                 $this->db->bind("status", $status);
+                $this->db->bind("titulo", $titulo);
                 $this->db->execQuery();
             }else{
-                $this->db->query("UPDATE textos SET texto = :texto, status = :status WHERE nome = :tipo");
+                $this->db->query("UPDATE textos SET texto = :texto, status = :status, titulo = :titulo WHERE nome = :tipo");
                 $this->db->bind("texto", $texto);
                 $this->db->bind("status", $status);
                 $this->db->bind("tipo", $tipo);
+                $this->db->bind("titulo", $titulo);
                 $this->db->execQuery();
             }
         }

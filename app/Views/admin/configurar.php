@@ -29,10 +29,19 @@
 								<ul class="list-group list-group-flush mt-3">
    									<li class="list-group-item">
 										<form method="POST" action="<?= URL ?>/Admin/alterarTextoImagem/1">
+											<?php 
+												if(isset($dados["textoimg1"][0]->titulo)){
+													$titulo1 = $dados["textoimg1"][0]->titulo;
+													$texto1 = $dados["textoimg1"][0]->texto;
+												}else{ 
+													$titulo1 = "";
+													$texto1 = "";
+												}
+											?>
 											<label class="tituloCards">Título</label>
-											<input type="text" class="form-control" name="titulo">
+											<input type="text" class="form-control" name="titulo" required value="<?= $titulo1 ?>"/>
 											<label class="tituloCards">Texto</label>
-											<textarea class="form-control" name="texto" rows=5></textarea>
+											<textarea class="form-control" name="texto" rows="5" required><?= $texto1 ?></textarea>
 											<input type="submit" class="btn btn-primary mt-3 fullWidth" value="Alterar">
 										</form>
 									</li>
@@ -65,10 +74,19 @@
 								<ul class="list-group list-group-flush mt-3">
    									<li class="list-group-item">
 										<form method="POST" action="<?= URL ?>/Admin/alterarTextoImagem/2">
+											<?php 
+												if(isset($dados["textoimg2"][0]->titulo)){
+													$titulo2 = $dados["textoimg2"][0]->titulo;
+													$texto2 = $dados["textoimg2"][0]->texto;
+												}else{ 
+													$titulo2 = "";
+													$texto2 = "";
+												}
+											?>
 											<label class="tituloCards">Título</label>
-											<input type="text" class="form-control" name="titulo">
+											<input type="text" class="form-control" name="titulo" required value="<?= $titulo2 ?>">
 											<label class="tituloCards">Texto</label>
-											<textarea class="form-control" name="texto" rows=5></textarea>
+											<textarea class="form-control" name="texto" rows="5" required><?= $texto2 ?></textarea>
 											<input type="submit" class="btn btn-primary mt-3 fullWidth" value="Alterar">
 										</form>
 									</li>
@@ -101,10 +119,19 @@
 								<ul class="list-group list-group-flush mt-3">
    									<li class="list-group-item">
 										<form method="POST" action="<?= URL ?>/Admin/alterarTextoImagem/3">
+											<?php 
+												if(isset($dados["textoimg3"][0]->titulo)){
+													$titulo3 = $dados["textoimg3"][0]->titulo;
+													$texto3 = $dados["textoimg3"][0]->texto;
+												}else{ 
+													$titulo3 = "";
+													$texto3 = "";
+												}
+											?>
 											<label class="tituloCards">Título</label>
-											<input type="text" class="form-control" name="titulo">
+											<input type="text" class="form-control" name="titulo" required value="<?= $titulo3 ?>">
 											<label class="tituloCards">Texto</label>
-											<textarea class="form-control" name="texto" rows=5></textarea>
+											<textarea class="form-control" name="texto" rows="5" required><?= $texto3 ?></textarea>
 											<input type="submit" class="btn btn-primary mt-3 fullWidth" value="Alterar">
 										</form>
 									</li>

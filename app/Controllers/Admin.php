@@ -101,7 +101,10 @@
 					"post3"				=> $this->configurarModel->buscaPost(3, BUSCA_POST_PREVIEW),
 					"textoPrivacidade"  => $this->configurarModel->buscaTexto("privacidade"),
 					"textoHome"  		=> $this->configurarModel->buscaTexto("home"),
-					"textoRodape"  		=> $this->configurarModel->buscaTexto("rodape")
+					"textoRodape"  		=> $this->configurarModel->buscaTexto("rodape"),
+					"textoimg1"			=> $this->configurarModel->buscaTexto("homepageimg1"),
+					"textoimg2"			=> $this->configurarModel->buscaTexto("homepageimg2"),
+					"textoimg3"			=> $this->configurarModel->buscaTexto("homepageimg3")
 				];
 				$this->view('admin/configurar', $dados);
 			}else
@@ -156,6 +159,27 @@
 			if($this->helpers->sessionValidate()){
 				$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 				$this->configurarModel->atualizaTexto($form['texto'], $form['status'], $tipo);
+				$this->configurar();
+			}else{
+				$this->view('pagenotfound');
+			}
+		}
+
+		public function alterarTextoImagem($num){
+			if($this->helpers->sessionValidate()){
+				$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+				switch ($num) {
+					case 1:
+						$tipo = 'homepageimg1';
+						break;
+					case 2:
+						$tipo = 'homepageimg2';
+						break;
+					case 3:
+						$tipo = 'homepageimg3';
+						break;
+				}
+				$this->configurarModel->atualizaTexto($form['texto'], 'a', $tipo, $form['titulo']);
 				$this->configurar();
 			}else{
 				$this->view('pagenotfound');

@@ -23,8 +23,8 @@
         ?>
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Conte-nos a sua experiência.</h1>
-            <p>Queremos contar a sua experiência de viagem, ajude a tirar as dúvidas de quem quer ir para um destino que você conhece.</p>
+            <h1><?= $dados["textoimg1"][0]->titulo ?></h1>
+            <p><?= $dados["textoimg1"][0]->texto ?></p>
             <p><a class="btn btn-lg btn-primary" href="<?= URL ?>/viagem/postar">Conte a sua viagem</a></p>
           </div>
         </div>
@@ -44,9 +44,9 @@
         ?>
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Londres</h1>
-            <p>Um lugar lindo para se conhecer.</p>
-            <p><a class="btn btn-lg btn-primary" href="VisualizarPost.html">Leia Mais</a></p>
+          <h1><?= $dados["textoimg2"][0]->titulo ?></h1>
+            <p><?= $dados["textoimg2"][0]->texto ?></p>
+            <p><a class="btn btn-lg btn-primary" href="<?= URL ?>/Viagem/search/<?= $dados["textoimg2"][0]->titulo ?>">Leia Mais</a></p>
           </div>
         </div>
       </div>
@@ -65,9 +65,9 @@
         ?>
         <div class="container">
           <div class="carousel-caption text-start">
-            <h1>Maragogi</h1>
-            <p>Conheça o Caribe brasileiro.</p>
-            <p><a class="btn btn-lg btn-primary" href="#">Leia Mais</a></p>
+          <h1><?= $dados["textoimg3"][0]->titulo ?></h1>
+            <p><?= $dados["textoimg3"][0]->texto ?></p>
+            <p><a class="btn btn-lg btn-primary" href="<?= URL ?>/Viagem/search/<?= $dados["textoimg3"][0]->titulo ?>">Leia Mais</a></p>
           </div>
         </div>
       </div>

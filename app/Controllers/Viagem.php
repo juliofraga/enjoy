@@ -142,14 +142,16 @@
 				$this->view('pagenotfound');
 		}
 
-		public function search(){
+		public function search($busca = null){
 			$form = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-			if(isset($form['search'])){
-				if(empty($form['txtSearch'])){
+			if(isset($form['search']) or $busca != null){
+				if(empty($form['txtSearch']) and $busca == null){
 					echo "<script>window.location.href='".URL."';</script>";
 				}else{
+					if(!empty($form['txtSearch']))
+						$busca = $form['txtSearch'];
 					$dados = [
-						"dados" => $this->viagemModel->search($this->searchFilter($form['txtSearch'])),
+						"dados" => $this->viagemModel->search($this->searchFilter($busca)),
 					];
 				}
 				$this->posts($dados);

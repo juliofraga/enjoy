@@ -20,7 +20,10 @@
                 "post1"      => $this->viagemModel->buscaPostPorCod($this->retornaPostId(1, BUSCA_POST_INDEX)),
                 "post2"      => $this->viagemModel->buscaPostPorCod($this->retornaPostId(2, BUSCA_POST_INDEX)),
                 "post3"      => $this->viagemModel->buscaPostPorCod($this->retornaPostId(3, BUSCA_POST_INDEX)),
-                "textoHome"  => $this->configurarModel->buscaTexto("home")
+                "textoHome"  => $this->configurarModel->buscaTexto("home"),
+                "textoimg1"	 => $this->configurarModel->buscaTexto("homepageimg1"),
+				"textoimg2"	 => $this->configurarModel->buscaTexto("homepageimg2"),
+				"textoimg3"	 => $this->configurarModel->buscaTexto("homepageimg3")
             ];
             $this->view('index', $dados);
         }
