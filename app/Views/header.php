@@ -1,3 +1,7 @@
+<?php
+    $help->ativaLinkMenu();
+?>
+
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
@@ -8,23 +12,23 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?= URL ?>">Home</a>
+                        <a class="nav-link <?= ACTIVE_HOME ?>" aria-current="page" href="<?= URL ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= URL ?>/viagem/postar">Conte a sua viagem</a>
+                        <a class="nav-link <?= ACTIVE_POSTAR ?>" href="<?= URL ?>/viagem/postar">Conte a sua viagem</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= URL ?>/viagem/posts">Posts</a>
+                        <a class="nav-link <?= ACTIVE_POSTS ?>" href="<?= URL ?>/viagem/posts">Posts</a>
                     </li>
 					<?php if($help->sessionValidate()){?>
 						<li class="nav-item">
-							<a class="nav-link" href="<?= URL ?>/usuario/cadastro">Cadastro de Usuários</a>
+							<a class="nav-link <?= ACTIVE_USUARIOS_CADASTRO ?>" href="<?= URL ?>/usuario/cadastro">Cadastro de Usuários</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="<?= URL ?>/viagem/aprovacao">Aprovação de Postagens</a>
+							<a class="nav-link <?= ACTIVE_APROVACAO ?>" href="<?= URL ?>/viagem/aprovacao">Aprovação de Postagens</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="<?= URL ?>/admin/configurar">Configurar</a>
+							<a class="nav-link <?= ACTIVE_CONFIGURAR ?>" href="<?= URL ?>/admin/configurar">Configurar</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="<?= URL ?>/usuario/logoff">Logoff</a>

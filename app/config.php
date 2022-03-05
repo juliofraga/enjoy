@@ -2,16 +2,16 @@
 
 	 // Arquivo de configuração
 
-	 const DB = [
-		 'HOST' => 'localhost',
-		 'USUARIO' => 'root',
-		 'SENHA' => '',
-		 'BANCO' => 'enjoy',
-		 'PORTA' => '3306'
-	 ];
+	const DB = [
+		'HOST' => 'localhost',
+		'USUARIO' => 'root',
+		'SENHA' => '',
+		'BANCO' => 'enjoy',
+		'PORTA' => '3306'
+	];
 
-	 define('BUSCA_POST_INDEX', '1');
-	 define('BUSCA_POST_PREVIEW', '0');
+	define('BUSCA_POST_INDEX', '1');
+	define('BUSCA_POST_PREVIEW', '0');
 
 	// dirname — Retorna o caminho/path do diretório pai
 	define('APP', dirname(__FILE__));

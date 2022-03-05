@@ -58,6 +58,56 @@
                 $dataFormatada = "";
             return $dataFormatada;
         }
+
+        public function ativaLinkMenu(){
+            if(strpos($_SERVER["REQUEST_URI"], "viagem/postar") == true) {
+                define('ACTIVE_POSTAR', 'active');
+                define('ACTIVE_POSTS', '');
+                define('ACTIVE_USUARIOS_CADASTRO', '');
+                define('ACTIVE_APROVACAO', '');
+                define('ACTIVE_CONFIGURAR', '');
+                define('ACTIVE_HOME', '');
+            }else if(strpos($_SERVER["REQUEST_URI"], "viagem/posts") == true or 
+                     strpos($_SERVER["REQUEST_URI"], "Viagem/post") == true or 
+                     strpos($_SERVER["REQUEST_URI"], "Viagem/search") == true or 
+                     strpos($_SERVER["REQUEST_URI"], "viagem/preview") == true){
+                define('ACTIVE_POSTAR', '');
+                define('ACTIVE_POSTS', 'active');
+                define('ACTIVE_USUARIOS_CADASTRO', '');
+                define('ACTIVE_APROVACAO', '');
+                define('ACTIVE_CONFIGURAR', '');
+                define('ACTIVE_HOME', '');
+            }else if(strpos($_SERVER["REQUEST_URI"], "usuario/cadastro") == true or 
+                     strpos($_SERVER["REQUEST_URI"], "usuario/cadastrados") == true) {
+                define('ACTIVE_POSTAR', '');
+                define('ACTIVE_POSTS', '');
+                define('ACTIVE_USUARIOS_CADASTRO', 'active');
+                define('ACTIVE_APROVACAO', '');
+                define('ACTIVE_CONFIGURAR', '');
+                define('ACTIVE_HOME', '');
+            }else if(strpos($_SERVER["REQUEST_URI"], "viagem/aprovacao") == true) {
+                define('ACTIVE_POSTAR', '');
+                define('ACTIVE_POSTS', '');
+                define('ACTIVE_USUARIOS_CADASTRO', '');
+                define('ACTIVE_APROVACAO', 'active');
+                define('ACTIVE_CONFIGURAR', '');
+                define('ACTIVE_HOME', '');
+            }else if(strpos($_SERVER["REQUEST_URI"], "admin/configurar") == true) {
+                define('ACTIVE_POSTAR', '');
+                define('ACTIVE_POSTS', '');
+                define('ACTIVE_USUARIOS_CADASTRO', '');
+                define('ACTIVE_APROVACAO', '');
+                define('ACTIVE_CONFIGURAR', 'active');
+                define('ACTIVE_HOME', '');
+            }else{
+                define('ACTIVE_POSTAR', '');
+                define('ACTIVE_POSTS', '');
+                define('ACTIVE_USUARIOS_CADASTRO', '');
+                define('ACTIVE_APROVACAO', '');
+                define('ACTIVE_CONFIGURAR', '');
+                define('ACTIVE_HOME', 'active');
+            }                    
+        }
     }
 
 ?>
