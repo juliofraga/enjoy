@@ -17,7 +17,9 @@
 		
 		//função para setar uma sessão de usuario
 		public function setSession($usuario){
-			session_start("blog_enjoy_the_journey");
+            if(!isset($_SESSION)){
+                session_start(["blog_enjoy_the_journey"]);
+            }
 			$_SESSION["betj_user"] = $usuario;
 		}
 		
@@ -108,6 +110,8 @@
                 define('ACTIVE_HOME', 'active');
             }                    
         }
+
+        
     }
 
 ?>

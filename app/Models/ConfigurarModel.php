@@ -90,19 +90,64 @@
         }
 
         public function aplicarAlteracoesImg(){
-            $this->db->query("DELETE FROM homepageimg WHERE tipo = :um");
+            $results = 0;
+            if($this->buscaImg(1, 0) > 0){
+                $this->db->query("DELETE FROM homepageimg WHERE tipo = :um and img1 IS NOT NULL");
+                $results = 1;
+            }else if($this->buscaImg(2, 0) > 0){
+                $this->db->query("DELETE FROM homepageimg WHERE tipo = :um and img2 IS NOT NULL");
+                $results = 1;
+            }else if($this->buscaImg(3, 0) > 0){
+                $this->db->query("DELETE FROM homepageimg WHERE tipo = :um and img3 IS NOT NULL");
+                $results = 1;
+            }
             $this->db->bind("um", 1);
-            if($this->db->execQuery()){
-                $this->db->query("UPDATE homepageimg SET tipo = :um WHERE tipo = :zero");
-                $this->db->bind("um", 1);
-                $this->db->bind("zero", 0);
-                $this->db->execQuery();
-                if($this->db->numRows() > 0)
-                    return true;
-                else
-                    return false;
-            }else{
+            if($results == 0)
                 return false;
+            else{
+                if($this->db->execQuery()){
+                    $this->db->query("UPDATE homepageimg SET tipo = :um WHERE tipo = :zero");
+                    $this->db->bind("um", 1);
+                    $this->db->bind("zero", 0);
+                    $this->db->execQuery();
+                    if($this->db->numRows() > 0)
+                        return true;
+                    else
+                        return false;
+                }else{
+                    return false;
+                }
+            }
+        }
+
+        public function aplicarAlteracoesPosts(){
+            $results = 0;
+            if($this->buscaPost(1, 0) > 0){
+                $this->db->query("DELETE FROM homepagepost WHERE tipo = :um and post1 IS NOT NULL");
+                $results = 1;
+            }else if($this->buscaPost(2, 0) > 0){
+                $this->db->query("DELETE FROM homepagepost WHERE tipo = :um and post2 IS NOT NULL");
+                $results = 1;
+            }else if($this->buscaPost(3, 0) > 0){
+                $this->db->query("DELETE FROM homepagepost WHERE tipo = :um and post3 IS NOT NULL");
+                $results = 1;
+            }
+            $this->db->bind("um", 1);
+            if($results == 0)
+                return false;
+            else{
+                if($this->db->execQuery()){
+                    $this->db->query("UPDATE homepagepost SET tipo = :um WHERE tipo = :zero");
+                    $this->db->bind("um", 1);
+                    $this->db->bind("zero", 0);
+                    $this->db->execQuery();
+                    if($this->db->numRows() > 0)
+                        return true;
+                    else
+                        return false;
+                }else{
+                    return false;
+                }
             }
         }
 
@@ -124,23 +169,6 @@
                 return true;
             else
                 return false;
-        }
-
-        public function aplicarAlteracoesPosts(){
-            $this->db->query("DELETE FROM homepagepost WHERE tipo = :um");
-            $this->db->bind("um", 1);
-            if($this->db->execQuery()){
-                $this->db->query("UPDATE homepagepost SET tipo = :um WHERE tipo = :zero");
-                $this->db->bind("um", 1);
-                $this->db->bind("zero", 0);
-                $this->db->execQuery();
-                if($this->db->numRows() > 0)
-                    return true;
-                else
-                    return false;
-            }else{
-                return false;
-            }
         }
 
         public function atualizaTexto($texto, $status, $tipo, $titulo = null){

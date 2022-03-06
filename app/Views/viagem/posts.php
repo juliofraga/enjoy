@@ -5,7 +5,9 @@
   <div class="album py-5 bg-light">
     <div class="container">
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-		<?php 
+		<?php
+			$numPost = count($dados["dados"]);
+			$postPorPag = 2;
 			if(count($dados["dados"]) == 0){
 		?>
 			<div class="naoHaRegistros">
@@ -63,6 +65,15 @@
 			</div>
 		<?php } ?>
       </div>
+	  <nav aria-label="Navegation" class="mt-5">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href="#">Anterior</a></li>
+			<li class="page-item"><a class="page-link" href="#">1</a></li>
+			<li class="page-item"><a class="page-link" href="#">2</a></li>
+			<li class="page-item"><a class="page-link" href="#">3</a></li>
+			<li class="page-item"><a class="page-link" href="#">Próximo</a></li>
+		</ul>
+  	  </nav>
     </div>
   </div>
 </main>
